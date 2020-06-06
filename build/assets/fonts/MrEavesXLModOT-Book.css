@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "MrEavesXLModOT-Book";
+    src: url("MrEavesXLModOT-Book.eot");
+    src: url("MrEavesXLModOT-Book.eot?#iefix") format("embedded-opentype"),
+         url("MrEavesXLModOT-Book.woff2") format("woff2"),
+         url("MrEavesXLModOT-Book.woff") format("woff"),
+         url("MrEavesXLModOT-Book.ttf") format("ttf"),
+         url("MrEavesXLModOT-Book.svg#MrEavesXLModOT-Book") format("svg");
+    font-style: normal;
+    font-weight: 300;
+}

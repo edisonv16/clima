@@ -1,0 +1,49 @@
+@mixin font-family($font-family, $line-height,$color){
+    font-weight: normal;
+    color: $color;
+    line-height: $line-height;
+    font-family: $font-family;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+$browser-context: 16; // Default
+
+@function calulateRem($pixels, $context: $browser-context) {
+    @return #{$pixels/$context}rem
+}
+
+@mixin rem($size) {
+    font-size: $size+px; //Fallback in px
+    font-size: calulateRem($size);
+}
+
+@mixin context($element, $context){
+    width: $element / $context *100%
+}
+
+@mixin paste_icon($position, $code) {
+    @if $position == after {
+        &:after {
+            content: $code;
+            @include rem(16);
+            @include font-family($font_icons,1,$black);
+            position: relative;
+            padding-left:10px;
+            padding-right:10px;
+        }
+    }
+    @if $position == before {
+        &:before {
+            content: $code;
+            @include rem(16);
+            @include font-family($font_icons,1,$black);
+            position: relative;
+            padding-left:10px;
+            padding-right:10px;
+        }
+    }
+}

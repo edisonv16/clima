@@ -1,0 +1,111 @@
+.bxslider
+  div
+    img(src="../assets/images/slide.jpg" title="Funky roots")
+  div
+    img(src="../assets/images/slide-2.jpg" title="The long and winding road")
+  div
+    img(src="../assets/images/slide-3.jpg" title="Happy trees")
+
+section.clima_actual
+  div.imgclima_actual
+    figure
+      img(src="../assets/images/cloudy.png", alt="")
+  div.dato_actual
+    p 31
+
+section.date_clima
+  .row
+    article.col-sm-12.col-md-8.col-lg-8.col-xl-8
+      .row
+        article.col-sm-12.col-md-4.col-lg-4.col-xl-4
+          h3 3 Days 
+            span Forecast
+          div.day_week_clima
+            figure
+              img(src="../assets/images/rain.png" title="lluvias", alt="lluvias")
+            p
+              strong Friday
+              span Rain
+            div.temperatura.active
+              p 32 / 23
+          div.day_week_clima
+            figure
+              img(src="../assets/images/clear.png" title="sol", alt="sol")
+            p
+              strong Saturday
+              span clear
+            div.temperatura
+              p 32 / 23
+          div.day_week_clima
+            figure
+              img(src="../assets/images/clouds.png" title="nubes", alt="nubes")
+            p
+              strong Sunday
+              span clouds
+            div.temperatura
+              p 32 / 23
+        article.col-sm-12.col-md-8.col-lg-8.col-xl-8.place
+          .head
+            h3 Place to 
+              span Visit
+            div.topreview
+              p Top review
+              figure
+                 img(src="../assets/images/hombre.png", alt="")
+              figure
+                img(src="../assets/images/mujer.png", alt="")
+              figure
+                img(src="../assets/images/hombre2.png", alt="")
+              a(href="http://", target="_blank", rel="noopener noreferrer")
+          .content
+            div.sites
+              figure
+                img(class="img-fluid" src="../assets/images/slide.jpg", alt="")
+                figcaption Arab Street 
+                  span Sigapour
+                div.plus.active
+              figure
+                img(class="img-fluid" src="../assets/images/artscience.png", alt="")
+                figcaption Arab Street 
+                  span Sigapour
+                div.plus.active
+              figure
+                img(class="img-fluid" src="../assets/images/slide-3.jpg", alt="")
+                figcaption Arab Street 
+                  span Sigapour
+                div.plus.active
+    
+    article.col-sm-12.col-md-4.col-lg-4.col-xl-4.paris
+      
+      div.dateparis
+        figure
+          img(src="../assets/images/cloudy_sun.png", alt="nublado con sol")
+        p.temp 29
+        div
+          p.city Leon 
+          p.country Francia
+        ul
+          li
+            p humidity 68
+          li
+            p west
+          li
+            p 8.03 km/h
+      div.dateparis
+        figure
+          img(src="../assets/images/cloudy_moon.png", alt="nublado con sol")
+        p.temp 29
+        div
+          p.city Paris 
+          p.country Francia
+        ul
+          li
+            p humidity 68
+          li
+            p west
+          li
+            p 8.03 km/h
+      div.addlocations
+        button Add Locations
+        figure
+          img(src="", alt="")

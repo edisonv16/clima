@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "icomoon";
+    src: url("diamonts.eot");
+    src: url("diamonts.eot?#iefix") format("embedded-opentype"),
+         url("diamonts.woff2") format("woff2"),
+         url("diamonts.woff") format("woff"),
+         url("diamonts.ttf") format("ttf"),
+         url("diamonts.svg#icomoon") format("svg");
+    font-style: normal;
+    font-weight: 300;
+}

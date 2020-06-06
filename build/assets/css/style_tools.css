@@ -1,0 +1,342 @@
+@font-face {
+  font-family: 'icons-diamonts';
+  src: url("../fonts/diamonts.eot") format("embedded-opentype"), url("../fonts/diamonts.woff") format("woff"), url("../fonts/diamonts.ttf") format("truetype"), url("../fonts/diamonts.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'diamonds-regular';
+  src: url("../fonts/MrEavesXLModOT-Reg.eot") format("embedded-opentype"), url("../fonts/MrEavesXLModOT-Reg.woff") format("woff"), url("../fonts/MrEavesXLModOT-Reg.ttf") format("truetype"), url("../fonts/MrEavesXLModOT-Reg.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'diamonds-books';
+  src: url("../fonts/MrEavesXLModOT-Book.eot") format("embedded-opentype"), url("../fonts/MrEavesXLModOT-Book.woff") format("woff"), url("../assets/fonts/MrEavesXLModOT-Book.ttf") format("truetype"), url("../assets/fonts/MrEavesXLModOT-Book.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'diamonds-bold';
+  src: url("../fonts/MrEavesXLModOT-Bold.eot") format("embedded-opentype"), url("../fonts/MrEavesXLModOT-Bold.woff") format("woff"), url("../fonts/MrEavesXLModOT-Bold.ttf") format("truetype"), url("../fonts/MrEavesXLModOT-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/*------------------------
+slider
+------------------------*/
+body {
+  width: 1024px;
+  background-color: #E1E9EF;
+  margin: 0 auto; }
+  body .clima {
+    padding: 35px;
+    border-radius: 30px;
+    width: 855px;
+    height: 580px;
+    background-color: #FFF;
+    margin: 80px auto 0;
+    position: relative; }
+    body .clima .bx-wrapper {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      margin-bottom: 0;
+      margin: 0 auto;
+      overflow: hidden; }
+      body .clima .bx-wrapper .bx-pager {
+        position: absolute;
+        top: 20px;
+        right: 200px;
+        width: 100px;
+        height: 100px;
+        padding: 0; }
+        body .clima .bx-wrapper .bx-pager.bx-default-pager a {
+          background: #000; }
+          body .clima .bx-wrapper .bx-pager.bx-default-pager a.active {
+            background-color: #1cc2c4; }
+      body .clima .bx-wrapper .bxslider div img {
+        max-height: 245px;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 25px;
+        overflow: hidden; }
+      body .clima .bx-wrapper .bx-controls .bx-pager {
+        right: 0;
+        top: 10px; }
+        body .clima .bx-wrapper .bx-controls .bx-pager .bx-pager-item a {
+          border-radius: initial; }
+    body .clima .clima_actual {
+      position: absolute;
+      left: 0;
+      width: 78px;
+      height: 156px;
+      top: 75px;
+      z-index: 9999;
+      background-image: url(../images/bg_clima.png); }
+      body .clima .clima_actual .imgclima_actual {
+        width: 77px;
+        height: 77px;
+        background-color: #2F3580;
+        border-radius: 15px;
+        float: left;
+        margin-top: 8px; }
+        body .clima .clima_actual .imgclima_actual figure {
+          margin: 0; }
+          body .clima .clima_actual .imgclima_actual figure img {
+            height: 30px;
+            margin: 20px 15px; }
+      body .clima .clima_actual .dato_actual {
+        height: 77px;
+        width: 69px;
+        float: left; }
+        body .clima .clima_actual .dato_actual p {
+          line-height: 62px;
+          font-size: 30px;
+          font-size: 1.875rem;
+          color: #FFF;
+          margin: 0;
+          text-align: center;
+          letter-spacing: -2px; }
+    body .clima .date_clima {
+      position: relative; }
+      body .clima .date_clima h3 {
+        margin: 40px 0 30px;
+        font-size: 20px;
+        font-size: 1.25rem; }
+        body .clima .date_clima h3 span {
+          font-weight: 100; }
+      body .clima .date_clima .day_week_clima {
+        width: 100%;
+        border: 1px solid #F3F3F3;
+        border-radius: 10px;
+        height: 50px;
+        margin-bottom: 7px;
+        position: relative;
+        overflow: hidden; }
+        body .clima .date_clima .day_week_clima figure {
+          float: left;
+          width: 35px;
+          height: 100%;
+          margin: 0 0 0 10px;
+          padding: 11px 0; }
+          body .clima .date_clima .day_week_clima figure img {
+            height: 20px;
+            object-fit: cover; }
+        body .clima .date_clima .day_week_clima p {
+          float: left;
+          margin: 11px 0;
+          line-height: initial; }
+          body .clima .date_clima .day_week_clima p span {
+            font-size: 9px;
+            font-size: 0.5625rem;
+            display: block;
+            color: #B1B1B1;
+            font-weight: 300; }
+          body .clima .date_clima .day_week_clima p strong {
+            font-size: 9px;
+            font-size: 0.5625rem;
+            display: block;
+            color: #2B3541;
+            font-weight: bold; }
+        body .clima .date_clima .day_week_clima .temperatura {
+          background-color: #DDE8F4;
+          font-size: 10px;
+          font-size: 0.625rem;
+          float: right;
+          height: 100%;
+          width: 55px;
+          border-radius: 9px; }
+          body .clima .date_clima .day_week_clima .temperatura p {
+            font-size: 14px;
+            font-size: 0.875rem;
+            text-align: center;
+            width: 100%;
+            line-height: 50px;
+            letter-spacing: -2px;
+            margin: 0;
+            color: #2B3541;
+            font-weight: bold; }
+          body .clima .date_clima .day_week_clima .temperatura.active {
+            background-color: #7966E9; }
+            body .clima .date_clima .day_week_clima .temperatura.active p {
+              color: #FFF; }
+      body .clima .date_clima .place {
+        padding-left: 24px; }
+        body .clima .date_clima .place .head {
+          display: block;
+          width: 100%; }
+          body .clima .date_clima .place .head h3 {
+            font-size: 20px;
+            font-size: 1.25rem;
+            display: inline-block; }
+            body .clima .date_clima .place .head h3 span {
+              font-weight: 100; }
+          body .clima .date_clima .place .head .topreview {
+            float: right;
+            margin: 40px 13px 0 0; }
+            body .clima .date_clima .place .head .topreview p {
+              font-size: 9px;
+              font-size: 0.5625rem;
+              font-weight: 400;
+              color: #B1B1B1;
+              margin: 0;
+              display: inline-block; }
+              body .clima .date_clima .place .head .topreview p::before {
+                content: "+";
+                display: inline-block;
+                height: 15px;
+                width: 15px;
+                font-size: 12px;
+                font-size: 0.75rem;
+                font-weight: bold; }
+            body .clima .date_clima .place .head .topreview figure {
+              margin: 0;
+              width: 15px;
+              height: 15px;
+              border-radius: 5px;
+              display: inline-block;
+              vertical-align: middle;
+              overflow: hidden; }
+              body .clima .date_clima .place .head .topreview figure img {
+                width: 100%;
+                height: 100%;
+                float: left; }
+            body .clima .date_clima .place .head .topreview a {
+              margin: 0;
+              width: 15px;
+              height: 15px;
+              border-radius: 5px;
+              display: inline-block;
+              background-color: #7966E9;
+              vertical-align: middle;
+              margin-left: 3px; }
+        body .clima .date_clima .place .content {
+          height: 165px;
+          position: relative;
+          display: block; }
+          body .clima .date_clima .place .content .sites figure {
+            float: left;
+            border-radius: 25px;
+            margin-bottom: 0;
+            position: relative; }
+            body .clima .date_clima .place .content .sites figure img {
+              width: auto;
+              height: 100%;
+              background-size: cover; }
+            body .clima .date_clima .place .content .sites figure figcaption {
+              position: absolute;
+              top: 10px;
+              left: 10px;
+              color: #FFF;
+              font-size: 8px;
+              font-size: 0.5rem; }
+            body .clima .date_clima .place .content .sites figure:nth-child(1) {
+              height: 165px;
+              width: 150px;
+              margin-right: 20px;
+              overflow: hidden; }
+            body .clima .date_clima .place .content .sites figure:nth-child(2) {
+              height: 45px;
+              width: 140px;
+              border-radius: 15px;
+              margin-bottom: 20px;
+              overflow: hidden; }
+              body .clima .date_clima .place .content .sites figure:nth-child(2) img {
+                width: 100%; }
+            body .clima .date_clima .place .content .sites figure:nth-child(3) {
+              height: 95px;
+              width: 140px;
+              border-radius: 15px;
+              overflow: hidden; }
+      body .clima .date_clima .paris {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0; }
+        body .clima .date_clima .paris .dateparis {
+          height: 95px;
+          width: 215px;
+          background-color: #FFF;
+          border-radius: 15px;
+          box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+          margin-bottom: 20px; }
+          body .clima .date_clima .paris .dateparis figure {
+            display: inline-block;
+            width: 65px;
+            height: 65px;
+            background-color: #DAE9F6;
+            border-radius: 15px;
+            margin: 0 18px 0 0;
+            vertical-align: top; }
+            body .clima .date_clima .paris .dateparis figure img {
+              height: 30px;
+              margin: 12px 6px; }
+          body .clima .date_clima .paris .dateparis p {
+            display: inline-block;
+            margin: 0; }
+            body .clima .date_clima .paris .dateparis p.temp {
+              line-height: 65px;
+              font-size: 35px;
+              font-size: 2.1875rem;
+              letter-spacing: -2px; }
+          body .clima .date_clima .paris .dateparis div {
+            display: inline-block; }
+            body .clima .date_clima .paris .dateparis div p {
+              display: block;
+              margin: 0;
+              line-height: initial;
+              border-left: 1px solid #F3F3F3;
+              padding-left: 10px; }
+              body .clima .date_clima .paris .dateparis div p.country {
+                font-size: 10px;
+                font-size: 0.625rem; }
+              body .clima .date_clima .paris .dateparis div p.city {
+                font-size: 14px;
+                font-size: 0.875rem; }
+          body .clima .date_clima .paris .dateparis ul {
+            width: 90%;
+            margin: 0 5%;
+            padding: 0;
+            display: flex; }
+            body .clima .date_clima .paris .dateparis ul li {
+              display: inline-flex;
+              width: 100%;
+              font-size: 12px;
+              font-size: 0.75rem;
+              border-right: 1px solid #F3F3F3; }
+              body .clima .date_clima .paris .dateparis ul li p {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                color: #B1B1B1;
+                line-height: 30px;
+                font-size: 10px;
+                font-size: 0.625rem;
+                font-weight: 300; }
+        body .clima .date_clima .paris .addlocations {
+          width: 215px;
+          height: 115px;
+          border: 2px dashed #F3F3F3;
+          background-color: #FFF;
+          border-radius: 15px;
+          text-align: center; }
+          body .clima .date_clima .paris .addlocations button {
+            font-size: 12px;
+            font-size: 0.75rem;
+            border: none;
+            text-align: center;
+            color: #7966E9;
+            border-radius: 15px;
+            padding: 8px 0;
+            display: block;
+            width: 50%;
+            margin: 20px auto 0;
+            background-color: #DDE8F4; }
+
+/*------------------------
+slider tablet
+------------------------*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .diamonds .bx-wrapper .bxslider div img {
+    max-height: 255px; } }
