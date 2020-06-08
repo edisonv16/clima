@@ -1,18 +1,18 @@
 var clima_images =[
     {
         'url' : '../assets/images/rain.png',
-        'clima' : 'Lluvia',
+        'clima' : 'Rain',
         'city' : 'Bogotá',
         'country' : 'Colombia',
         'temperatura' : '17/14',
-        'day' : 'viernes'
+        'day' : 'Friday'
     },
     {
         'url' : '../assets/images/clear.png',
-        'clima' : 'Sol cielo despejado',
+        'clima' : 'Sol',
         'city' : 'Bogotá',
         'country' : 'Colombia',
-        'temperatura' : '23',
+        'temperatura' : '24/19',
         'day' : 'Saturday'
     },
     {
@@ -20,7 +20,7 @@ var clima_images =[
         'clima' : 'nubes con luna',
         'city' : 'Paris',
         'country' : 'Francia',
-        'temperatura' : '16',
+        'temperatura' : '16/12',
         'day' : 'Sunday'
     },
     {
@@ -34,17 +34,17 @@ var clima_images =[
     {
         'url' : '../assets/images/clouds.png',
         'clima' : 'nubes',
-        'city' : '',
-        'country' : '',
-        'temperatura' : '',
-        'day' : ''
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '19/15',
+        'day' : 'Sunday'
     },
     {
         'url' : '../assets/images/cloudy.png',
         'clima' : 'nube blanca con sol ',
-        'city' : '',
-        'country' : '',
-        'temperatura' : '',
-        'day' : ''
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '19/17',
+        'day' : 'Today'
     }
 ]

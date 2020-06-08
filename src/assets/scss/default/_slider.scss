@@ -102,7 +102,7 @@ body{
         float: left;
         p{
           line-height: 62px;
-          @include rem(30);
+          @include rem(25);
           color:$white;
           margin: 0;
           text-align: center;
