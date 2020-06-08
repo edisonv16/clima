@@ -260,6 +260,9 @@ body{
           height: 165px;
           position: relative;
           display: block;
+          @media(min-width:1px)and(max-width:768px){
+            height: auto;
+          }
           .sites{
             
             figure{
@@ -284,6 +287,14 @@ body{
                 width: 150px;
                 margin-right:20px ;
                 overflow: hidden;
+                @media(min-width:1px)and(max-width:768px){
+                  width: 100%;
+                  margin-bottom: 20px;
+                  img{
+                    width: 100%;
+                    
+                  }
+                }
               }
               &:nth-child(2){
                 height: 45px;
@@ -291,6 +302,11 @@ body{
                 border-radius: 15px;
                 margin-bottom: 20px;
                 overflow: hidden;
+                @media(min-width:1px)and(max-width:768px){
+                  width: 45%;
+                  margin-right: 5%;
+                  height: 95px;
+                }
                 img{
                   width: 100%;
                 }
@@ -300,6 +316,10 @@ body{
                 width: 140px;
                 border-radius: 15px;
                 overflow: hidden;
+                @media(min-width:1px)and(max-width:768px){
+                  width: 45%;
+                  margin-left: 5%;
+                }
               }
             }
           }

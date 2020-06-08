@@ -241,6 +241,9 @@ body {
           height: 165px;
           position: relative;
           display: block; }
+          @media (min-width: 1px) and (max-width: 768px) {
+            body .clima .date_clima .place .content {
+              height: auto; } }
           body .clima .date_clima .place .content .sites figure {
             float: left;
             border-radius: 25px;
@@ -262,12 +265,23 @@ body {
               width: 150px;
               margin-right: 20px;
               overflow: hidden; }
+              @media (min-width: 1px) and (max-width: 768px) {
+                body .clima .date_clima .place .content .sites figure:nth-child(1) {
+                  width: 100%;
+                  margin-bottom: 20px; }
+                  body .clima .date_clima .place .content .sites figure:nth-child(1) img {
+                    width: 100%; } }
             body .clima .date_clima .place .content .sites figure:nth-child(2) {
               height: 45px;
               width: 140px;
               border-radius: 15px;
               margin-bottom: 20px;
               overflow: hidden; }
+              @media (min-width: 1px) and (max-width: 768px) {
+                body .clima .date_clima .place .content .sites figure:nth-child(2) {
+                  width: 45%;
+                  margin-right: 5%;
+                  height: 95px; } }
               body .clima .date_clima .place .content .sites figure:nth-child(2) img {
                 width: 100%; }
             body .clima .date_clima .place .content .sites figure:nth-child(3) {
@@ -275,6 +289,10 @@ body {
               width: 140px;
               border-radius: 15px;
               overflow: hidden; }
+              @media (min-width: 1px) and (max-width: 768px) {
+                body .clima .date_clima .place .content .sites figure:nth-child(3) {
+                  width: 45%;
+                  margin-left: 5%; } }
       body .clima .date_clima .paris {
         width: 100%;
         position: absolute;
