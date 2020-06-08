@@ -29,6 +29,9 @@ body {
   width: 1024px;
   background-color: #E1E9EF;
   margin: 0 auto; }
+  @media (min-width: 1px) and (max-width: 768px) {
+    body {
+      width: 100%; } }
   body .clima {
     padding: 35px;
     border-radius: 30px;
@@ -37,6 +40,12 @@ body {
     background-color: #FFF;
     margin: 80px auto 0;
     position: relative; }
+    @media (min-width: 1px) and (max-width: 768px) {
+      body .clima {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        margin: 30px auto 30px; } }
     body .clima .bx-wrapper {
       border: none;
       box-shadow: none;
@@ -74,6 +83,9 @@ body {
       top: 75px;
       z-index: 9999;
       background-image: url(../images/bg_clima.png); }
+      @media (min-width: 1px) and (max-width: 768px) {
+        body .clima .clima_actual {
+          top: 35px; } }
       body .clima .clima_actual .imgclima_actual {
         width: 77px;
         height: 77px;
@@ -114,6 +126,9 @@ body {
         margin-bottom: 7px;
         position: relative;
         overflow: hidden; }
+        @media (min-width: 1px) and (max-width: 768px) {
+          body .clima .date_clima .day_week_clima {
+            height: auto; } }
         body .clima .date_clima .day_week_clima figure {
           float: left;
           width: 35px;
@@ -133,12 +148,20 @@ body {
             display: block;
             color: #B1B1B1;
             font-weight: 300; }
+            @media (min-width: 1px) and (max-width: 768px) {
+              body .clima .date_clima .day_week_clima p span {
+                font-size: 20px;
+                font-size: 1.25rem; } }
           body .clima .date_clima .day_week_clima p strong {
             font-size: 9px;
             font-size: 0.5625rem;
             display: block;
             color: #2B3541;
             font-weight: bold; }
+            @media (min-width: 1px) and (max-width: 768px) {
+              body .clima .date_clima .day_week_clima p strong {
+                font-size: 20px;
+                font-size: 1.25rem; } }
         body .clima .date_clima .day_week_clima .temperatura {
           background-color: #DDE8F4;
           font-size: 10px;
@@ -163,6 +186,9 @@ body {
               color: #FFF; }
       body .clima .date_clima .place {
         padding-left: 24px; }
+        @media (min-width: 1px) and (max-width: 768px) {
+          body .clima .date_clima .place {
+            margin: 0 0 20px 0; } }
         body .clima .date_clima .place .head {
           display: block;
           width: 100%; }
@@ -254,6 +280,9 @@ body {
         position: absolute;
         bottom: 0;
         right: 0; }
+        @media (min-width: 1px) and (max-width: 768px) {
+          body .clima .date_clima .paris {
+            position: relative; } }
         body .clima .date_clima .paris .dateparis {
           height: 95px;
           width: 215px;
@@ -261,6 +290,10 @@ body {
           border-radius: 15px;
           box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
           margin-bottom: 20px; }
+          @media (min-width: 1px) and (max-width: 768px) {
+            body .clima .date_clima .paris .dateparis {
+              width: 100%;
+              height: auto; } }
           body .clima .date_clima .paris .dateparis figure {
             display: inline-block;
             width: 65px;
@@ -291,9 +324,17 @@ body {
               body .clima .date_clima .paris .dateparis div p.country {
                 font-size: 10px;
                 font-size: 0.625rem; }
+                @media (min-width: 1px) and (max-width: 768px) {
+                  body .clima .date_clima .paris .dateparis div p.country {
+                    font-size: 13px;
+                    font-size: 0.8125rem; } }
               body .clima .date_clima .paris .dateparis div p.city {
                 font-size: 14px;
                 font-size: 0.875rem; }
+                @media (min-width: 1px) and (max-width: 768px) {
+                  body .clima .date_clima .paris .dateparis div p.city {
+                    font-size: 20px;
+                    font-size: 1.25rem; } }
           body .clima .date_clima .paris .dateparis ul {
             width: 90%;
             margin: 0 5%;
@@ -321,6 +362,9 @@ body {
           background-color: #FFF;
           border-radius: 15px;
           text-align: center; }
+          @media (min-width: 1px) and (max-width: 768px) {
+            body .clima .date_clima .paris .addlocations {
+              width: 100%; } }
           body .clima .date_clima .paris .addlocations button {
             font-size: 12px;
             font-size: 0.75rem;
