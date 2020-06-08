@@ -1,0 +1,50 @@
+var clima_images =[
+    {
+        'url' : '../assets/images/rain.png',
+        'clima' : 'Lluvia',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '17/14',
+        'day' : 'viernes'
+    },
+    {
+        'url' : '../assets/images/clear.png',
+        'clima' : 'Sol cielo despejado',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '23',
+        'day' : 'Saturday'
+    },
+    {
+        'url' : '../assets/images/cloudy_moon.png',
+        'clima' : 'nubes con luna',
+        'city' : 'Paris',
+        'country' : 'Francia',
+        'temperatura' : '16',
+        'day' : 'Sunday'
+    },
+    {
+        'url' : '../assets/images/cloudy_sun.png',
+        'clima' : 'nubes moradas con sol',
+        'city' : '',
+        'country' : '',
+        'temperatura' : '',
+        'day' : ''
+    },
+    {
+        'url' : '../assets/images/clouds.png',
+        'clima' : 'nubes',
+        'city' : '',
+        'country' : '',
+        'temperatura' : '',
+        'day' : ''
+    },
+    {
+        'url' : '../assets/images/cloudy.png',
+        'clima' : 'nube blanca con sol ',
+        'city' : '',
+        'country' : '',
+        'temperatura' : '',
+        'day' : ''
+    }
+]

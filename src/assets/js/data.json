@@ -1,0 +1,26 @@
+var = clima_images[
+    {
+        'url' : '../assets/images/rain.png',
+        'alt' : 'lloviendo'
+    },
+    {
+        'url' : '../assets/images/clear.png',
+        'alt' : 'Sol cielo despejado'
+    },
+    {
+        'url' : '../assets/images/clodymoon.png',
+        'alt' : 'nubes con luna'
+    },
+    {
+        'url' : '../assets/images/clody_sun.png',
+        'alt' : 'nubes moradas con sol'
+    },
+    {
+        'url' : '../assets/images/clouds.png',
+        'alt' : 'nubes'
+    },
+    {
+        'url' : '../assets/images/cloudy.png',
+        'alt' : 'nubes con sol '
+    }
+]

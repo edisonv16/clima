@@ -9,7 +9,7 @@
 section.clima_actual
   div.imgclima_actual
     figure
-      img(src="../assets/images/cloudy.png", alt="")
+      img#cloudy(src="", alt="")
   div.dato_actual
     p 31
 
@@ -20,25 +20,25 @@ section.date_clima
         article.col-sm-12.col-md-4.col-lg-4.col-xl-4
           h3 3 Days 
             span Forecast
-          div.day_week_clima
+          div.day_week_clima.rain
             figure
-              img(src="../assets/images/rain.png" title="lluvias", alt="lluvias")
+              img(src="" title="lluvias", alt="lluvias")
             p
               strong Friday
               span Rain
             div.temperatura.active
-              p 32 / 23
-          div.day_week_clima
+              p 19 / 16
+          div.day_week_clima.two
             figure
-              img(src="../assets/images/clear.png" title="sol", alt="sol")
+              img#clear(src="" title="sol", alt="sol")
             p
               strong Saturday
               span clear
             div.temperatura
               p 32 / 23
-          div.day_week_clima
+          div.day_week_clima.three
             figure
-              img(src="../assets/images/clouds.png" title="nubes", alt="nubes")
+              img#clouds(src="" title="nubes", alt="nubes")
             p
               strong Sunday
               span clouds
@@ -77,12 +77,12 @@ section.date_clima
     
     article.col-sm-12.col-md-4.col-lg-4.col-xl-4.paris
       
-      div.dateparis
+      div.dateparis.one
         figure
-          img(src="../assets/images/cloudy_sun.png", alt="nublado con sol")
+          img#cloudy_sun(src="", alt="nublado con sol")
         p.temp 29
         div
-          p.city Leon 
+          p.city Lion 
           p.country Francia
         ul
           li
@@ -91,9 +91,9 @@ section.date_clima
             p west
           li
             p 8.03 km/h
-      div.dateparis
+      div.dateparis.two
         figure
-          img(src="../assets/images/cloudy_moon.png", alt="nublado con sol")
+          img#cloudy_moon(src="", alt="nublado con sol")
         p.temp 29
         div
           p.city Paris 
