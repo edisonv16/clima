@@ -104,8 +104,8 @@ body {
         float: left; }
         body .clima .clima_actual .dato_actual p {
           line-height: 62px;
-          font-size: 30px;
-          font-size: 1.875rem;
+          font-size: 25px;
+          font-size: 1.5625rem;
           color: #FFF;
           margin: 0;
           text-align: center;
@@ -328,8 +328,8 @@ body {
             margin: 0; }
             body .clima .date_clima .paris .dateparis p.temp {
               line-height: 65px;
-              font-size: 35px;
-              font-size: 2.1875rem;
+              font-size: 25px;
+              font-size: 1.5625rem;
               letter-spacing: -2px; }
           body .clima .date_clima .paris .dateparis div {
             display: inline-block; }

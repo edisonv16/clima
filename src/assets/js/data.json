@@ -1,26 +1,50 @@
-var = clima_images[
+var clima_images =[
     {
         'url' : '../assets/images/rain.png',
-        'alt' : 'lloviendo'
+        'clima' : 'Rain',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '17/14',
+        'day' : 'Friday'
     },
     {
         'url' : '../assets/images/clear.png',
-        'alt' : 'Sol cielo despejado'
+        'clima' : 'Sol',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '24/19',
+        'day' : 'Saturday'
     },
     {
-        'url' : '../assets/images/clodymoon.png',
-        'alt' : 'nubes con luna'
+        'url' : '../assets/images/cloudy_moon.png',
+        'clima' : 'nubes con luna',
+        'city' : 'Paris',
+        'country' : 'Francia',
+        'temperatura' : '16/12',
+        'day' : 'Sunday'
     },
     {
-        'url' : '../assets/images/clody_sun.png',
-        'alt' : 'nubes moradas con sol'
+        'url' : '../assets/images/cloudy_sun.png',
+        'clima' : 'nubes moradas con sol',
+        'city' : 'Lion',
+        'country' : 'Paris',
+        'temperatura' : '14/12',
+        'day' : ''
     },
     {
         'url' : '../assets/images/clouds.png',
-        'alt' : 'nubes'
+        'clima' : 'nubes',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '19/15',
+        'day' : 'Sunday'
     },
     {
         'url' : '../assets/images/cloudy.png',
-        'alt' : 'nubes con sol '
+        'clima' : 'nube blanca con sol ',
+        'city' : 'Bogotá',
+        'country' : 'Colombia',
+        'temperatura' : '19/17',
+        'day' : 'Today'
     }
 ]

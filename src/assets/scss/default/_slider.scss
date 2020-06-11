@@ -367,7 +367,7 @@ body{
             
             &.temp{
               line-height: 65px;
-              @include rem(35);
+              @include rem(25);
               letter-spacing: -2px;
             }
           }

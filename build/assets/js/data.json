@@ -26,9 +26,9 @@ var clima_images =[
     {
         'url' : '../assets/images/cloudy_sun.png',
         'clima' : 'nubes moradas con sol',
-        'city' : '',
-        'country' : '',
-        'temperatura' : '',
+        'city' : 'Lion',
+        'country' : 'Paris',
+        'temperatura' : '14/12',
         'day' : ''
     },
     {
