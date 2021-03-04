@@ -1,15 +1,27 @@
 .bxslider
   div
-    img(src="../assets/images/slide.jpg" title="Funky roots")
+    picture
+      source(media='(max-width:480px)', data-srcset="../assets/images/slide-small.jpg")
+      source(media="(max-width: 640px)", data-srcset="../assets/images/slide-medium.jpg")
+      source(media="(max-width: 1200px)", data-srcset="../assets/images/slide.jpg")
+      img.lazyload(data-src="../assets/images/slide.jpg" title="Funky roots" loading="lazy" )
   div
-    img(src="../assets/images/slide-2.jpg" title="The long and winding road")
+    picture
+      source(media='(max-width:480px)', data-srcset="../assets/images/slide-2-small.jpg")
+      source(media="(max-width: 640px)", data-srcset="../assets/images/slide-2-medium.jpg")
+      source(media="(max-width: 1200px)", data-srcset="../assets/images/slide-2.jpg")
+      img.lazyload(data-src="../assets/images/slide-2.jpg" title="The long and winding road" loading="lazy")
   div
-    img(src="../assets/images/slide-3.jpg" title="Happy trees")
-
+    picture
+        source(media='(max-width:480px)', data-srcset="../assets/images/slide-3-small.jpg")
+        source(media="(max-width: 640px)", data-srcset="../assets/images/slide-3-medium.jpg")
+        source(media="(max-width: 1200px)", data-srcset="../assets/images/slide-3.jpg")
+        img.lazyload(data-src="../assets/images/slide-3.jpg" title="Happy trees" loading="lazy")
+  
 section.clima_actual.cloudy
   div.imgclima_actual
     figure
-      img(src="", alt="")
+      img.lazyload(data-src="", alt="" loading="lazy")
   div.dato_actual
     p 
 

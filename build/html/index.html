@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>GradiWeb</title>
-    <meta name="author" content="Casa Editorial El Tiempo">
+    <title>imagenes</title>
+    <meta name="author" content="Edison Ospina">
     <meta http-equiv="X-UA_compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0">
     <!-- Bootstrap-->
@@ -12,19 +12,39 @@
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bxslider.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.1.5/lazysizes.min.js"></script>
     <!--Mis Estilos-->
     <link rel="stylesheet" href="../assets/css/style_tools.css">
   </head>
   <body>
     <div class="clima">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a ligula lectus. In placerat dui nec lacus cursus scelerisque. Vivamus varius laoreet pellentesque. Morbi mattis nisl a ultrices euismod. Sed ornare vitae massa non tempor. Ut vehicula molestie enim vitae malesuada. Vivamus et ultricies risus. Integer ornare dui quis tempor molestie. Sed posuere eu velit quis posuere. Maecenas dapibus erat vel eros feugiat, vitae aliquam urna ornare. Vivamus quis est commodo, elementum orci quis, aliquet nisi. In malesuada accumsan faucibus. Mauris tincidunt dictum arcu ac porta. Nullam luctus ac enim non efficitur. Nullam dictum, nisi et volutpat vestibulum, diam tortor elementum ipsum, sit amet imperdiet orci ipsum vitae massa. Duis scelerisque mi congue, fermentum ex eget, congue mauris.</p>
       <div class="bxslider">
-        <div><img src="../assets/images/slide.jpg" title="Funky roots"></div>
-        <div><img src="../assets/images/slide-2.jpg" title="The long and winding road"></div>
-        <div><img src="../assets/images/slide-3.jpg" title="Happy trees"></div>
+        <div>
+          <picture>
+            <source media="(max-width:480px)" data-srcset="../assets/images/slide-small.jpg">
+            <source media="(max-width: 640px)" data-srcset="../assets/images/slide-medium.jpg">
+            <source media="(max-width: 1200px)" data-srcset="../assets/images/slide.jpg"><img class="lazyload" data-src="../assets/images/slide.jpg" title="Funky roots" loading="lazy">
+          </picture>
+        </div>
+        <div>
+          <picture>
+            <source media="(max-width:480px)" data-srcset="../assets/images/slide-2-small.jpg">
+            <source media="(max-width: 640px)" data-srcset="../assets/images/slide-2-medium.jpg">
+            <source media="(max-width: 1200px)" data-srcset="../assets/images/slide-2.jpg"><img class="lazyload" data-src="../assets/images/slide-2.jpg" title="The long and winding road" loading="lazy">
+          </picture>
+        </div>
+        <div>
+          <picture>
+            <source media="(max-width:480px)" data-srcset="../assets/images/slide-3-small.jpg">
+            <source media="(max-width: 640px)" data-srcset="../assets/images/slide-3-medium.jpg">
+            <source media="(max-width: 1200px)" data-srcset="../assets/images/slide-3.jpg"><img class="lazyload" data-src="../assets/images/slide-3.jpg" title="Happy trees" loading="lazy">
+          </picture>
+        </div>
       </div>
       <section class="clima_actual cloudy">
         <div class="imgclima_actual">
-          <figure><img src="" alt=""></figure>
+          <figure><img class="lazyload" data-src="" alt="" loading="lazy"></figure>
         </div>
         <div class="dato_actual">
           <p> </p>
@@ -37,21 +57,21 @@
               <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <h3>3 Days <span>Forecast</span></h3>
                 <div class="day_week_clima rain">
-                  <figure><img src="" title="lluvias" alt="lluvias"></figure>
+                  <figure><img class="lazyload" data-src="" title="lluvias" alt="lluvias"></figure>
                   <p><strong>Friday</strong><span>Rain</span></p>
                   <div class="temperatura active">
                     <p>19 / 16</p>
                   </div>
                 </div>
                 <div class="day_week_clima clear">
-                  <figure><img src="" title="sol" alt="sol"></figure>
+                  <figure><img class="lazyload" data-src="" title="sol" alt="sol"></figure>
                   <p><strong>Saturday</strong><span>clear</span></p>
                   <div class="temperatura">
                     <p>32 / 23</p>
                   </div>
                 </div>
                 <div class="day_week_clima clouds">
-                  <figure><img src="" title="nubes" alt="nubes"></figure>
+                  <figure><img class="lazyload" data-src="" title="nubes" alt="nubes"></figure>
                   <p><strong>Sunday</strong><span>clouds</span></p>
                   <div class="temperatura">
                     <p>32 / 23</p>
@@ -63,22 +83,22 @@
                   <h3>Place to <span>Visit</span></h3>
                   <div class="topreview">
                     <p>Top review</p>
-                    <figure><img src="../assets/images/hombre.png" alt=""></figure>
-                    <figure><img src="../assets/images/mujer.png" alt=""></figure>
-                    <figure><img src="../assets/images/hombre2.png" alt=""></figure><a href="http://" target="_blank" rel="noopener noreferrer"></a>
+                    <figure><img class="lazyload" data-src="../assets/images/hombre.png" alt="" loading="lazy"></figure>
+                    <figure><img class="lazyload" data-src="../assets/images/mujer.png" alt="" loading="lazy"></figure>
+                    <figure><img class="lazyload" data-src="../assets/images/hombre2.png" alt="" loading="lazy"></figure><a href="http://" target="_blank" rel="noopener noreferrer"></a>
                   </div>
                 </div>
                 <div class="content">
                   <div class="sites">
-                    <figure><img class="img-fluid" src="../assets/images/slide.jpg" alt="">
+                    <figure><img class="img-fluid lazyload" data-src="../assets/images/slide.jpg" alt="" loading="lazy">
                       <figcaption>Arab Street <span>Sigapour</span></figcaption>
                       <div class="plus active"></div>
                     </figure>
-                    <figure><img class="img-fluid" src="../assets/images/artscience.png" alt="">
+                    <figure><img class="img-fluid lazyload" data-src="../assets/images/artscience.png" alt="" loading="lazy">
                       <figcaption>Arab Street <span>Sigapour</span></figcaption>
                       <div class="plus active"></div>
                     </figure>
-                    <figure><img class="img-fluid" src="../assets/images/slide-3.jpg" alt="">
+                    <figure><img class="img-fluid lazyload" data-src="../assets/images/slide-3.jpg" alt="" loading="lazy">
                       <figcaption>Arab Street <span>Sigapour</span></figcaption>
                       <div class="plus active"></div>
                     </figure>
@@ -89,7 +109,7 @@
           </article>
           <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4 paris">
             <div class="dateparis cloudy_sun">
-              <figure><img src="" title="Nublado sol" alt="Nublado sol"></figure>
+              <figure><img class="lazyload" data-src="" title="Nublado sol" alt="Nublado sol"></figure>
               <p class="temp"></p>
               <div>
                 <p class="city"></p>
@@ -108,7 +128,7 @@
               </ul>
             </div>
             <div class="dateparis cloudy_moon">
-              <figure><img src="" alt="nublado con Luna"></figure>
+              <figure><img class="lazyload" data-src="" alt="nublado con Luna"></figure>
               <p class="temp"></p>
               <div>
                 <p class="city"></p>
@@ -128,7 +148,7 @@
             </div>
             <div class="addlocations">
               <button>Add Locations</button>
-              <figure><img src="" alt=""></figure>
+              <figure><img class="lazyload" data-src="" alt=""></figure>
             </div>
           </article>
         </div>

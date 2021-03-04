@@ -6,6 +6,8 @@ sass = require('gulp-sass'),
 pug = require('gulp-pug2'),
 plumber = require('gulp-plumber'),
 imagemin = require('gulp-imagemin'),
+pngquant = require('imagemin-pngquant'),
+mozjpeg = require('imagemin-mozjpeg'),
 webserver = require('gulp-webserver'),
 fontgen = require('gulp-fontgen');
 //requireDir = require('require-dir');
@@ -53,7 +55,11 @@ gulp.task('pug', function() {// Comilas los archivos pug a HTML
 gulp.task('imagemin', function() {//Optimiza las imágenes
   return gulp.src('./src/assets/images/*.{jpg,jpeg,png,gif}')
   .pipe(plumber())
-  .pipe(imagemin())
+  .pipe(imagemin([
+    pngquant({quality: [0.5, 0.5]}),
+    mozjpeg({quality: 50})
+  ]
+  ))
   .pipe(gulp.dest('./build/assets/images'));
   console.log("Imágenes comprimidas con éxito!");
 });
