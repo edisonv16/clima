@@ -31,6 +31,6 @@
     "imagemin-pngquant": "^9.0.1"
   },
   "dependencies": {
-    "sharp": "^0.27.1"
+    "sharp": "^0.30.5"
   }
 }
