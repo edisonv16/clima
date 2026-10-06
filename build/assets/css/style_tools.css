@@ -92,31 +92,31 @@ body .clima .bx-wrapper .bx-controls .bx-controls-direction {
   display: none !important;
 }
 body .clima {
-  /* Distintivo flotante clima actual (Bogotá) */
+  /* Distintivo flotante clima actual (Bogotá) - Alineación perfecta con el slider */
 }
 body .clima .clima_actual {
   position: absolute;
-  left: 0;
+  left: 23px;
+  top: 42px;
   width: 78px;
   height: 156px;
-  top: 60px;
   z-index: 999;
   background: url(../images/bg_clima.png) no-repeat top left;
   background-size: 78px 156px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .clima_actual {
-    top: 30px;
+    left: 10px;
+    top: 25px;
   }
 }
 body .clima .clima_actual .imgclima_actual {
-  width: 76px;
-  height: 76px;
+  width: 72px;
+  height: 72px;
   background-color: #242749;
-  border-radius: 17px;
-  float: left;
-  margin-top: 6px;
-  margin-left: 1px;
+  border-radius: 18px;
+  margin-top: 5px;
+  margin-left: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,19 +133,18 @@ body .clima .clima_actual .imgclima_actual figure img {
   object-fit: contain;
 }
 body .clima .clima_actual .dato_actual {
-  height: 74px;
-  width: 74px;
-  float: left;
+  height: 70px;
+  width: 78px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 body .clima .clima_actual .dato_actual p {
-  font-size: 21px;
+  font-size: 20px;
   color: #FFF;
   margin: 0;
   text-align: center;
-  letter-spacing: -1.5px;
+  letter-spacing: -1px;
   font-weight: 700;
   line-height: 1;
 }
@@ -154,8 +153,8 @@ body .clima {
 }
 body .clima .slider_custom_arrows {
   position: absolute;
-  left: 10px;
-  top: 212px;
+  left: 32px;
+  top: 204px;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -163,8 +162,8 @@ body .clima .slider_custom_arrows {
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .slider_custom_arrows {
-    top: 180px;
-    left: 8px;
+    left: 18px;
+    top: 185px;
   }
 }
 body .clima .slider_custom_arrows .slider_arrow_btn {

@@ -100,29 +100,29 @@ body {
       }
     }
 
-    /* Distintivo flotante clima actual (Bogotá) */
+    /* Distintivo flotante clima actual (Bogotá) - Alineación perfecta con el slider */
     .clima_actual {
       position: absolute;
-      left: 0;
+      left: 23px;
+      top: 42px;
       width: 78px;
       height: 156px;
-      top: 60px;
       z-index: 999;
       background: url(../images/bg_clima.png) no-repeat top left;
       background-size: 78px 156px;
 
       @media(min-width: 1px) and (max-width: 768px) {
-        top: 30px;
+        left: 10px;
+        top: 25px;
       }
 
       .imgclima_actual {
-        width: 76px;
-        height: 76px;
+        width: 72px;
+        height: 72px;
         background-color: #242749;
-        border-radius: 17px;
-        float: left;
-        margin-top: 6px;
-        margin-left: 1px;
+        border-radius: 18px;
+        margin-top: 5px;
+        margin-left: 3px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -142,19 +142,18 @@ body {
       }
 
       .dato_actual {
-        height: 74px;
-        width: 74px;
-        float: left;
+        height: 70px;
+        width: 78px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         p {
-          font-size: 21px;
+          font-size: 20px;
           color: $white;
           margin: 0;
           text-align: center;
-          letter-spacing: -1.5px;
+          letter-spacing: -1px;
           font-weight: 700;
           line-height: 1;
         }
@@ -164,16 +163,16 @@ body {
     /* Flechas izquierda y derecha en la base del distintivo de clima */
     .slider_custom_arrows {
       position: absolute;
-      left: 10px;
-      top: 212px;
+      left: 32px;
+      top: 204px;
       z-index: 1000;
       display: flex;
       align-items: center;
       gap: 6px;
 
       @media(min-width: 1px) and (max-width: 768px) {
-        top: 180px;
-        left: 8px;
+        left: 18px;
+        top: 185px;
       }
 
       .slider_arrow_btn {
