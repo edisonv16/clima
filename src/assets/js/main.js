@@ -2,19 +2,19 @@ $(document).ready(function() {
   var API_KEY = "5034801f02b7a43482db1c080227f31b";
   var DIAS_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-  // Diccionario de países y sus dos ciudades principales
+  // Diccionario de países con su ciudad principal/capital (índice 0) y ciudad secundaria (índice 1)
   var PAISES_CONFIG = {
     "colombia": [
       { nombre: "Bogotá", consulta: "Bogota,CO", pais: "Colombia" },
       { nombre: "Barranquilla", consulta: "Barranquilla,CO", pais: "Colombia" }
     ],
     "francia": [
-      { nombre: "Lyon", consulta: "Lyon,FR", pais: "Francia" },
-      { nombre: "París", consulta: "Paris,FR", pais: "Francia" }
+      { nombre: "París", consulta: "Paris,FR", pais: "Francia" },
+      { nombre: "Lyon", consulta: "Lyon,FR", pais: "Francia" }
     ],
     "france": [
-      { nombre: "Lyon", consulta: "Lyon,FR", pais: "Francia" },
-      { nombre: "París", consulta: "Paris,FR", pais: "Francia" }
+      { nombre: "París", consulta: "Paris,FR", pais: "Francia" },
+      { nombre: "Lyon", consulta: "Lyon,FR", pais: "Francia" }
     ],
     "espana": [
       { nombre: "Madrid", consulta: "Madrid,ES", pais: "España" },
@@ -25,16 +25,16 @@ $(document).ready(function() {
       { nombre: "Guadalajara", consulta: "Guadalajara,MX", pais: "México" }
     ],
     "estados unidos": [
-      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" },
-      { nombre: "Los Ángeles", consulta: "Los Angeles,US", pais: "Estados Unidos" }
+      { nombre: "Washington", consulta: "Washington,US", pais: "Estados Unidos" },
+      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" }
     ],
     "usa": [
-      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" },
-      { nombre: "Los Ángeles", consulta: "Los Angeles,US", pais: "Estados Unidos" }
+      { nombre: "Washington", consulta: "Washington,US", pais: "Estados Unidos" },
+      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" }
     ],
     "ee uu": [
-      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" },
-      { nombre: "Los Ángeles", consulta: "Los Angeles,US", pais: "Estados Unidos" }
+      { nombre: "Washington", consulta: "Washington,US", pais: "Estados Unidos" },
+      { nombre: "Nueva York", consulta: "New York,US", pais: "Estados Unidos" }
     ],
     "argentina": [
       { nombre: "Buenos Aires", consulta: "Buenos Aires,AR", pais: "Argentina" },
@@ -118,6 +118,17 @@ $(document).ready(function() {
     return esNoche ? "../assets/images/cloudy_moon.png" : "../assets/images/cloudy_sun.png";
   }
 
+  function obtenerIconoPronostico(main) {
+    var m = (main || "").toLowerCase();
+    if (m.indexOf("rain") !== -1 || m.indexOf("drizzle") !== -1) {
+      return "../assets/images/rain.png";
+    }
+    if (m.indexOf("clear") !== -1) {
+      return "../assets/images/clear.png";
+    }
+    return "../assets/images/clouds.png";
+  }
+
   function obtenerDireccionViento(deg) {
     if (deg === undefined || deg === null) return "Oeste";
     var direcciones = ["Norte", "Noreste", "Este", "Sureste", "Sur", "Suroeste", "Oeste", "Noroeste"];
@@ -164,7 +175,59 @@ $(document).ready(function() {
     });
   }
 
-  // Cambiar ciudades según el país ingresado
+  // Consultar pronóstico de 3 días para la ciudad principal seleccionada
+  function consultarPronosticoCiudad(consultaCiudad) {
+    var url = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURIComponent(consultaCiudad) + "&appid=" + API_KEY + "&units=metric";
+    $.ajax({
+      url: url,
+      dataType: "json",
+      success: function(data) {
+        if (data && data.list && data.list.length >= 24) {
+          var pasos = [
+            { el: ".rain", item: data.list[0] },
+            { el: ".clear", item: data.list[8] },
+            { el: ".clouds", item: data.list[16] }
+          ];
+
+          pasos.forEach(function(entry) {
+            if (entry.item) {
+              var fecha = new Date(entry.item.dt * 1000);
+              var climaTraducido = traducirClima(entry.item.weather[0].main);
+              var icono = obtenerIconoPronostico(entry.item.weather[0].main);
+
+              $(entry.el + " p strong").text(DIAS_SEMANA[fecha.getDay()]);
+              $(entry.el + " p span").text(climaTraducido);
+              $(entry.el + " figure img").attr("src", icono);
+              $(entry.el + " .temperatura p").text(
+                Math.round(entry.item.main.temp_max) + " / " + Math.round(entry.item.main.temp_min)
+              );
+            }
+          });
+        }
+      },
+      error: function(err) {
+        console.warn("No se pudo obtener el pronóstico de 3 días para " + consultaCiudad, err);
+      }
+    });
+  }
+
+  // Consultar clima actual para el distintivo flotante del slider
+  function consultarClimaActual(consultaCiudad) {
+    var url = "https://api.openweathermap.org/data/2.5/weather?q=" + encodeURIComponent(consultaCiudad) + "&appid=" + API_KEY + "&units=metric";
+    $.ajax({
+      url: url,
+      dataType: "json",
+      success: function(data) {
+        if (data && data.main) {
+          $(".cloudy .dato_actual p").text(Math.round(data.main.temp) + "°C");
+          var mainClima = (data.weather && data.weather[0]) ? data.weather[0].main : "";
+          $(".cloudy .imgclima_actual figure img").attr("src", obtenerIconoClima(mainClima, false));
+        }
+      }
+    });
+  }
+
+  // Cambiar ciudades y pronóstico según el país ingresado
   function cambiarPais(paisInput, onSuccess, onError) {
     var clave = normalizarTexto(paisInput);
     if (!clave) {
@@ -174,18 +237,33 @@ $(document).ready(function() {
 
     if (PAISES_CONFIG[clave]) {
       var ciudades = PAISES_CONFIG[clave];
-      consultarCiudadApi(ciudades[0].consulta, ciudades[0].nombre, ciudades[0].pais, ".cloudy_sun", false);
-      consultarCiudadApi(ciudades[1].consulta, ciudades[1].nombre, ciudades[1].pais, ".cloudy_moon", true);
+      var ciudadPrincipal = ciudades[0];
+      var ciudadSecundaria = ciudades[1];
+
+      // 1. Actualizar las 2 tarjetas laterales de la derecha
+      consultarCiudadApi(ciudadPrincipal.consulta, ciudadPrincipal.nombre, ciudadPrincipal.pais, ".cloudy_sun", false);
+      consultarCiudadApi(ciudadSecundaria.consulta, ciudadSecundaria.nombre, ciudadSecundaria.pais, ".cloudy_moon", true);
+
+      // 2. Actualizar el pronóstico de 3 días con la ciudad principal/capital del país
+      consultarPronosticoCiudad(ciudadPrincipal.consulta);
+
+      // 3. Actualizar el distintivo flotante del clima actual con la ciudad principal
+      consultarClimaActual(ciudadPrincipal.consulta);
+
       if (onSuccess) onSuccess();
       return;
     }
 
-    // Si no está en la lista predeterminada, buscar la ciudad/país en OpenWeatherMap
+    // Si no está en la lista predeterminada, consultar la ciudad/país genérico a OpenWeatherMap
     consultarCiudadApi(paisInput, null, null, ".cloudy_sun", false, function(err, info) {
       if (err) {
         if (onError) onError("No se encontró el clima para \"" + paisInput + "\". Prueba con Colombia, España, México, etc.");
       } else {
-        // Para la segunda tarjeta, mantener o buscar capital relacionada
+        // Actualizar pronóstico de 3 días y clima actual con la ubicación encontrada
+        consultarPronosticoCiudad(paisInput);
+        consultarClimaActual(paisInput);
+
+        // Mantener una segunda ciudad de referencia en la segunda tarjeta
         consultarCiudadApi("Paris,FR", "París", "Francia", ".cloudy_moon", true);
         if (onSuccess) onSuccess();
       }
@@ -221,69 +299,30 @@ $(document).ready(function() {
 
         // Ciudades base (Lyon y París en español)
         pintarTarjetaCiudad(".cloudy_sun", {
-          temp: 14,
+          temp: 15,
           city: paris[1].city,
           country: paris[1].country,
-          humidity: 68,
-          windDir: "Oeste",
-          windSpeed: 8.03,
+          humidity: 77,
+          windDir: "Sur",
+          windSpeed: 3.76,
           weather: "Clouds"
         }, false);
 
         pintarTarjetaCiudad(".cloudy_moon", {
-          temp: 16,
+          temp: 18,
           city: paris[0].city,
           country: paris[0].country,
-          humidity: 55,
-          windDir: "Oeste",
-          windSpeed: 8.03,
+          humidity: 58,
+          windDir: "Noreste",
+          windSpeed: 2.06,
           weather: "Clear"
         }, true);
 
-        // Consultar API en vivo
-        consultarApiClimaBogota();
+        // Carga inicial en vivo de Bogotá (pronóstico y actual) y ciudades francesas
+        consultarPronosticoCiudad("Bogota,CO");
+        consultarClimaActual("Bogota,CO");
         consultarCiudadApi("Lyon,FR", "Lyon", "Francia", ".cloudy_sun", false);
         consultarCiudadApi("Paris,FR", "París", "Francia", ".cloudy_moon", true);
-      }
-    });
-  }
-
-  // Clima de Bogotá en vivo
-  function consultarApiClimaBogota() {
-    // Actual Bogotá
-    $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/weather?q=Bogota,CO&appid=" + API_KEY + "&units=metric",
-      dataType: "json",
-      success: function(data) {
-        if (data && data.main) {
-          $(".cloudy .dato_actual p").text(Math.round(data.main.temp) + "°C");
-          var mainClima = (data.weather && data.weather[0]) ? data.weather[0].main : "";
-          $(".cloudy .imgclima_actual figure img").attr("src", obtenerIconoClima(mainClima, false));
-        }
-      }
-    });
-
-    // Pronóstico 3 días Bogotá
-    $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/forecast?q=Bogota,CO&appid=" + API_KEY + "&units=metric",
-      dataType: "json",
-      success: function(data) {
-        if (data && data.list && data.list.length >= 24) {
-          var items = [
-            { el: ".rain", item: data.list[0] },
-            { el: ".clear", item: data.list[8] },
-            { el: ".clouds", item: data.list[16] }
-          ];
-
-          items.forEach(function(entry) {
-            if (entry.item) {
-              var f = new Date(entry.item.dt * 1000);
-              $(entry.el + " p strong").text(DIAS_SEMANA[f.getDay()]);
-              $(entry.el + " p span").text(traducirClima(entry.item.weather[0].main));
-              $(entry.el + " .temperatura p").text(Math.round(entry.item.main.temp_max) + " / " + Math.round(entry.item.main.temp_min));
-            }
-          });
-        }
       }
     });
   }

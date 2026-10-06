@@ -103,8 +103,8 @@ body {
     /* Distintivo flotante clima actual (Bogotá) - Alineación perfecta con el slider */
     .clima_actual {
       position: absolute;
-      left: 23px;
-      top: 42px;
+      left: 29px;
+      top: 52px;
       width: 78px;
       height: 156px;
       z-index: 999;
@@ -163,8 +163,8 @@ body {
     /* Flechas izquierda y derecha en la base del distintivo de clima */
     .slider_custom_arrows {
       position: absolute;
-      left: 32px;
-      top: 204px;
+      left: 41px;
+      top: 229px;
       z-index: 1000;
       display: flex;
       align-items: center;
