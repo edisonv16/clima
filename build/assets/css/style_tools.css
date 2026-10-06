@@ -16,7 +16,8 @@ body .clima {
   padding: 35px;
   border-radius: 30px;
   width: 855px;
-  height: 590px;
+  min-height: 590px;
+  height: auto;
   background-color: #FFF;
   margin: 60px auto 0;
   position: relative;
@@ -29,6 +30,14 @@ body .clima {
     padding: 15px;
     margin: 20px auto;
   }
+}
+body .clima {
+  /* Contenedor relativo del slider superior */
+}
+body .clima .slider_wrapper_rel {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
 }
 body .clima {
   /* Carrusel principal bxSlider */
@@ -84,31 +93,8 @@ body .clima .bx-wrapper .bx-controls .bx-pager.bx-default-pager .bx-pager-item a
   transform: scale(1.15);
   box-shadow: 0 2px 6px rgba(121, 102, 233, 0.6);
 }
-body .clima .bx-wrapper .bx-controls {
-  /* Flechas direccionales */
-}
-body .clima .bx-wrapper .bx-controls .bx-controls-direction a {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  background-color: rgba(43, 53, 65, 0.6);
-  backdrop-filter: blur(4px);
-  border-radius: 50%;
-  text-indent: -9999px;
-  z-index: 50;
-  transition: all 0.25s ease;
-}
-body .clima .bx-wrapper .bx-controls .bx-controls-direction a:hover {
-  background-color: #7966E9;
-  box-shadow: 0 4px 10px rgba(121, 102, 233, 0.5);
-}
-body .clima .bx-wrapper .bx-controls .bx-controls-direction .bx-prev {
-  left: 15px;
-}
-body .clima .bx-wrapper .bx-controls .bx-controls-direction .bx-next {
-  right: 15px;
+body .clima .bx-wrapper .bx-controls .bx-controls-direction {
+  display: none !important;
 }
 body .clima {
   /* Distintivo flotante clima actual (Bogotá) */
@@ -174,7 +160,54 @@ body .clima .clima_actual .dato_actual p {
   line-height: 1;
 }
 body .clima {
-  /* Sección inferior: Pronóstico, Lugares y Ciudades francesas */
+  /* Flechas izquierda y derecha juntas en el costado izquierdo inferior debajo de la temperatura */
+}
+body .clima .slider_custom_arrows {
+  position: absolute;
+  left: 42px;
+  bottom: 14px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (min-width: 1px) and (max-width: 768px) {
+  body .clima .slider_custom_arrows {
+    left: 20px;
+    bottom: 12px;
+  }
+}
+body .clima .slider_custom_arrows .slider_arrow_btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(30, 36, 44, 0.65);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+  outline: none;
+}
+body .clima .slider_custom_arrows .slider_arrow_btn svg {
+  display: block;
+  transition: transform 0.2s ease;
+}
+body .clima .slider_custom_arrows .slider_arrow_btn:hover {
+  background-color: #7966E9;
+  color: #FFF;
+  box-shadow: 0 4px 12px rgba(121, 102, 233, 0.45);
+  transform: translateY(-1px);
+}
+body .clima .slider_custom_arrows .slider_arrow_btn:active {
+  transform: translateY(0);
+}
+body .clima {
+  /* Sección inferior: Pronóstico, Lugares y Ciudades */
 }
 body .clima .date_clima {
   position: relative;
@@ -249,22 +282,25 @@ body .clima .date_clima .day_week_clima p span {
 }
 body .clima .date_clima .day_week_clima .temperatura {
   background-color: #DDE8F4;
-  width: 60px;
+  min-width: 68px;
+  width: 72px;
   height: 100%;
   border-radius: 0 11px 11px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  padding: 0 6px;
 }
 body .clima .date_clima .day_week_clima .temperatura p {
-  font-size: 12px;
-  font-size: calc(12 / 16 * 1rem);
+  font-size: 11px;
+  font-size: calc(11 / 16 * 1rem);
   text-align: center;
   margin: 0;
   color: #2B3541;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
 }
 body .clima .date_clima .day_week_clima .temperatura.active {
   background-color: #7966E9;
@@ -312,56 +348,65 @@ body .clima .date_clima .place .head .topreview p::before {
   font-weight: bold;
 }
 body .clima .date_clima .place .head .topreview p {
-  font-size: 9px;
-  font-size: calc(9 / 16 * 1rem);
+  margin: 0 10px 0 0;
+  font-size: 10px;
+  font-size: calc(10 / 16 * 1rem);
   color: #B1B1B1;
-  margin: 0 6px 0 0;
+  font-weight: 600;
 }
 body .clima .date_clima .place .head .topreview figure {
-  margin: 0 2px;
-  width: 18px;
-  height: 18px;
-  border-radius: 5px;
-  overflow: hidden;
+  margin: 0 -4px 0 0;
+  display: inline-block;
 }
 body .clima .date_clima .place .head .topreview figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 body .clima .date_clima .place .head .topreview a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 18px;
   height: 18px;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #7966E9;
-  margin-left: 4px;
-  display: inline-block;
+  color: #FFF;
+  margin-left: 8px;
+  text-decoration: none;
+  font-size: 11px;
+  line-height: 1;
+}
+body .clima .date_clima .place .head .topreview a::before {
+  content: "›";
+  margin-top: -2px;
+  font-weight: bold;
 }
 body .clima .date_clima .place .content .sites {
   display: flex;
-  align-items: flex-start;
-}
-@media (min-width: 1px) and (max-width: 768px) {
-  body .clima .date_clima .place .content .sites {
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
 }
 body .clima .date_clima .place .content .sites figure {
-  border-radius: 18px;
-  margin-bottom: 0;
+  margin: 0;
   position: relative;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 body .clima .date_clima .place .content .sites figure img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform 0.3s ease;
+}
+body .clima .date_clima .place .content .sites figure:hover img {
+  transform: scale(1.05);
 }
 body .clima .date_clima .place .content .sites figure figcaption {
   position: absolute;
-  top: 10px;
+  bottom: 8px;
   left: 10px;
   color: #FFF;
   font-size: 8px;
@@ -421,7 +466,7 @@ body .clima .date_clima .place .content .sites figure:nth-child(3) {
   border-radius: 14px;
 }
 body .clima .date_clima {
-  /* Ciudades francesas (Lyon, Paris) y botón Add Locations */
+  /* Ciudades y botón Agregar ubicación */
 }
 body .clima .date_clima .paris {
   width: 100%;
@@ -465,10 +510,8 @@ body .clima .date_clima .paris .dateparis .dateparis_header figure {
   flex-shrink: 0;
 }
 body .clima .date_clima .paris .dateparis .dateparis_header figure img {
+  max-width: 32px;
   max-height: 32px;
-  max-width: 36px;
-  margin: 0;
-  display: block;
   object-fit: contain;
 }
 body .clima .date_clima .paris .dateparis .dateparis_header p.temp {
@@ -526,9 +569,10 @@ body .clima .date_clima .paris .dateparis ul li p {
   font-size: calc(9 / 16 * 1rem);
   font-weight: 400;
   line-height: 1.8;
+  white-space: nowrap;
 }
 body .clima .date_clima .paris {
-  /* Botón Ajouter un lieu (centrado horizontal y verticalmente) */
+  /* Botón Agregar ubicación centrado horizontal y verticalmente */
 }
 body .clima .date_clima .paris .addlocations {
   width: 215px;
@@ -539,7 +583,7 @@ body .clima .date_clima .paris .addlocations {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .paris .addlocations {
@@ -553,7 +597,7 @@ body .clima .date_clima .paris .addlocations button {
   border: none;
   color: #7966E9;
   border-radius: 20px;
-  padding: 8px 20px;
+  padding: 9px 22px;
   background-color: #DDE8F4;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -563,4 +607,127 @@ body .clima .date_clima .paris .addlocations button:hover {
   background-color: #7966E9;
   color: #FFF;
   box-shadow: 0 4px 12px rgba(121, 102, 233, 0.35);
+}
+
+/* Modal interactivo para agregar ubicación */
+.modal-custom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(20, 24, 32, 0.55);
+  backdrop-filter: blur(5px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.modal-custom-overlay .modal-custom-card {
+  background-color: #FFF;
+  width: 440px;
+  max-width: 100%;
+  border-radius: 22px;
+  padding: 26px 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-size: calc(18 / 16 * 1rem);
+  font-weight: 700;
+  color: #2B3541;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-header .modal-custom-close {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #B1B1B1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s ease;
+  outline: none;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-header .modal-custom-close:hover {
+  color: #2B3541;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-body p {
+  font-size: 12px;
+  font-size: calc(12 / 16 * 1rem);
+  color: #B1B1B1;
+  line-height: 1.45;
+  margin: 0 0 12px;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-body .modal-input-group .modal-custom-input {
+  width: 100%;
+  height: 42px;
+  border: 1.5px solid #F3F3F3;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-size: calc(13 / 16 * 1rem);
+  color: #2B3541;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #FAFCFE;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-body .modal-input-group .modal-custom-input:focus {
+  border-color: #7966E9;
+  background-color: #FFF;
+  box-shadow: 0 0 0 3px rgba(121, 102, 233, 0.18);
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-body .modal-input-group .modal-custom-input::placeholder {
+  color: #A0AEC0;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-body .modal-error-msg {
+  color: #E53935;
+  font-size: 11px;
+  font-size: calc(11 / 16 * 1rem);
+  margin: 8px 0 0;
+  display: none;
+  line-height: 1.3;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer .btn-modal-action {
+  border: none;
+  border-radius: 20px;
+  padding: 9px 22px;
+  font-size: 12px;
+  font-size: calc(12 / 16 * 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer .btn-modal-action.btn-cancel {
+  background-color: #DDE8F4;
+  color: #B1B1B1;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer .btn-modal-action.btn-cancel:hover {
+  background-color: #D1DCF0;
+  color: #2B3541;
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer .btn-modal-action.btn-accept {
+  background-color: #7966E9;
+  color: #FFF;
+  box-shadow: 0 4px 12px rgba(121, 102, 233, 0.35);
+}
+.modal-custom-overlay .modal-custom-card .modal-custom-footer .btn-modal-action.btn-accept:hover {
+  background-color: #6855D6;
+  box-shadow: 0 6px 16px rgba(121, 102, 233, 0.45);
 }

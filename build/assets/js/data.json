@@ -36,17 +36,17 @@
 	"datos_paris": [
 		{
 			"url": "../assets/images/cloudy_moon.png",
-			"clima": "Nuageux avec lune",
-			"city": "Paris",
-			"country": "France",
+			"clima": "Nublado con luna",
+			"city": "París",
+			"country": "Francia",
 			"temperatura": "16°C",
-			"day": "Dimanche"
+			"day": "Domingo"
 		},
 		{
 			"url": "../assets/images/cloudy_sun.png",
-			"clima": "Nuageux ensoleillé",
+			"clima": "Nublado con sol",
 			"city": "Lyon",
-			"country": "France",
+			"country": "Francia",
 			"temperatura": "14°C",
 			"day": ""
 		}

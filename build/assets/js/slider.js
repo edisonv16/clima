@@ -1,1 +1,1 @@
-$(function(){$(".bxslider").bxSlider({mode:"fade",speed:500,randomStart:!0})});
+$(function(){var e=$(".bxslider").bxSlider({mode:"fade",speed:500,randomStart:!0,controls:!1});$("#slider-prev").on("click",function(n){n.preventDefault(),e.goToPrevSlide()}),$("#slider-next").on("click",function(n){n.preventDefault(),e.goToNextSlide()})});

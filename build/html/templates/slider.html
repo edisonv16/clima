@@ -1,17 +1,31 @@
 
-<div class="bxslider">
-  <div><img src="../assets/images/slide.jpg" title="Funky roots"/></div>
-  <div><img src="../assets/images/slide-2.jpg" title="The long and winding road"/></div>
-  <div><img src="../assets/images/slide-3.jpg" title="Happy trees"/></div>
+<div class="slider_wrapper_rel">
+  <div class="bxslider">
+    <div><img src="../assets/images/slide.jpg" title="Funky roots"/></div>
+    <div><img src="../assets/images/slide-2.jpg" title="The long and winding road"/></div>
+    <div><img src="../assets/images/slide-3.jpg" title="Happy trees"/></div>
+  </div>
+  <section class="clima_actual cloudy">
+    <div class="imgclima_actual">
+      <figure><img src="" alt=""/></figure>
+    </div>
+    <div class="dato_actual">
+      <p> </p>
+    </div>
+  </section>
+  <div class="slider_custom_arrows">
+    <button class="slider_arrow_btn" id="slider-prev" type="button" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="slider_arrow_btn" id="slider-next" type="button" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
 </div>
-<section class="clima_actual cloudy">
-  <div class="imgclima_actual">
-    <figure><img src="" alt=""/></figure>
-  </div>
-  <div class="dato_actual">
-    <p> </p>
-  </div>
-</section>
 <section class="date_clima">
   <div class="row">
     <article class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
@@ -72,19 +86,19 @@
     <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4 paris">
       <div class="dateparis cloudy_sun">
         <div class="dateparis_header">
-          <figure><img src="" title="Nuageux ensoleillé" alt="Nuageux ensoleillé"/></figure>
+          <figure><img src="" title="Nublado sol" alt="Nublado sol"/></figure>
           <p class="temp"></p>
           <div class="city_info">
             <p class="city">Lyon</p>
-            <p class="country">France</p>
+            <p class="country">Francia</p>
           </div>
         </div>
         <ul>
           <li>
-            <p class="humidity">humidité 68%</p>
+            <p class="humidity">Humedad 68%</p>
           </li>
           <li>
-            <p class="wind-dir">ouest</p>
+            <p class="wind-dir">Oeste</p>
           </li>
           <li>
             <p class="wind-speed">8.03 km/h</p>
@@ -93,19 +107,19 @@
       </div>
       <div class="dateparis cloudy_moon">
         <div class="dateparis_header">
-          <figure><img src="" alt="Nuageux avec lune"/></figure>
+          <figure><img src="" alt="Nublado con luna"/></figure>
           <p class="temp"></p>
           <div class="city_info">
-            <p class="city">Paris</p>
-            <p class="country">France</p>
+            <p class="city">París</p>
+            <p class="country">Francia</p>
           </div>
         </div>
         <ul>
           <li>
-            <p class="humidity">humidité 55%</p>
+            <p class="humidity">Humedad 55%</p>
           </li>
           <li>
-            <p class="wind-dir">ouest</p>
+            <p class="wind-dir">Oeste</p>
           </li>
           <li>
             <p class="wind-speed">8.03 km/h</p>
@@ -113,8 +127,27 @@
         </ul>
       </div>
       <div class="addlocations">
-        <button>Ajouter un lieu</button>
+        <button id="btn-open-modal" type="button">Agregar ubicación</button>
       </div>
     </article>
   </div>
 </section>
+<div class="modal-custom-overlay" id="modal-location" style="display: none;">
+  <div class="modal-custom-card">
+    <div class="modal-custom-header">
+      <h4>Agregar Ubicación</h4>
+      <button class="modal-custom-close" id="btn-modal-close" type="button" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="modal-custom-body">
+      <p>Ingresa el nombre de un país para actualizar el clima de sus ciudades principales:</p>
+      <div class="modal-input-group">
+        <input class="modal-custom-input" id="input-country" type="text" placeholder="Ej: Colombia, España, Francia, México, EE. UU..." autocomplete="off"/>
+      </div>
+      <p class="modal-error-msg" id="modal-error-msg"></p>
+    </div>
+    <div class="modal-custom-footer">
+      <button class="btn-modal-action btn-cancel" id="btn-modal-cancel" type="button">Cancelar</button>
+      <button class="btn-modal-action btn-accept" id="btn-modal-accept" type="button">Aceptar</button>
+    </div>
+  </div>
+</div>

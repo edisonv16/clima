@@ -1,0 +1,13 @@
+div#modal-location.modal-custom-overlay(style="display: none;")
+  div.modal-custom-card
+    div.modal-custom-header
+      h4 Agregar Ubicación
+      button#btn-modal-close.modal-custom-close(type="button" aria-label="Cerrar") &times;
+    div.modal-custom-body
+      p Ingresa el nombre de un país para actualizar el clima de sus ciudades principales:
+      div.modal-input-group
+        input#input-country.modal-custom-input(type="text" placeholder="Ej: Colombia, España, Francia, México, EE. UU..." autocomplete="off")
+      p#modal-error-msg.modal-error-msg
+    div.modal-custom-footer
+      button#btn-modal-cancel.btn-modal-action.btn-cancel(type="button") Cancelar
+      button#btn-modal-accept.btn-modal-action.btn-accept(type="button") Aceptar
