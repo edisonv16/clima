@@ -5,30 +5,30 @@
 slider & weather dashboard
 ------------------------*/
 body {
-  width: 1024px;
+  width: 100%;
   background-color: $blue-gray;
-  margin: 0 auto;
-
-  @media(min-width: 1px) and (max-width: 768px) {
-    width: 100%;
-  }
+  margin: 0;
+  padding: 30px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 
   .clima {
-    padding: 35px;
-    border-radius: 30px;
-    width: 855px;
-    min-height: 590px;
-    height: auto;
+    padding: 30px;
+    border-radius: 32px;
+    width: 885px;
+    max-width: 96vw;
     background-color: $white;
-    margin: 60px auto 0;
     position: relative;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+    margin: 0 auto;
 
     @media(min-width: 1px) and (max-width: 768px) {
       width: 100%;
-      height: auto;
-      padding: 15px;
-      margin: 20px auto;
+      padding: 16px;
+      border-radius: 20px;
     }
 
     /* Carrusel principal bxSlider */
@@ -36,23 +36,27 @@ body {
       border: none;
       box-shadow: none;
       background: transparent;
-      margin-bottom: 0;
-      margin: 0 auto;
+      margin: 0;
       overflow: hidden;
       position: relative;
-      border-radius: 25px;
+      border-radius: 24px;
 
       .bxslider {
         margin: 0;
         padding: 0;
         div {
           img {
-            max-height: 245px;
+            height: 235px;
+            max-height: 235px;
             object-fit: cover;
             width: 100%;
-            border-radius: 25px;
-            overflow: hidden;
+            border-radius: 24px;
             display: block;
+
+            @media(min-width: 1px) and (max-width: 768px) {
+              height: 180px;
+              max-height: 180px;
+            }
           }
         }
       }
@@ -61,8 +65,8 @@ body {
       .bx-controls {
         .bx-pager {
           position: absolute;
-          top: 16px;
-          right: 20px;
+          top: 18px;
+          right: 24px;
           width: auto;
           padding: 0;
           z-index: 50;
@@ -70,20 +74,19 @@ body {
           &.bx-default-pager {
             .bx-pager-item {
               display: inline-block;
-              margin: 0 3px;
+              margin: 0 4px;
 
               a {
                 display: block;
-                width: 10px;
-                height: 10px;
-                background-color: rgba(43, 53, 65, 0.45);
+                width: 9px;
+                height: 9px;
+                background-color: rgba(43, 53, 65, 0.4);
                 border-radius: 3px;
                 text-indent: -9999px;
                 transition: all 0.25s ease;
 
                 &.active, &:hover {
                   background-color: $morado !important;
-                  transform: scale(1.15);
                   box-shadow: 0 2px 6px rgba(121, 102, 233, 0.6);
                 }
               }
@@ -97,28 +100,29 @@ body {
       }
     }
 
-    /* Distintivo flotante clima actual (Bogotá) - Posición original idéntica */
+    /* Distintivo flotante clima actual (Bogotá) */
     .clima_actual {
       position: absolute;
       left: 0;
       width: 78px;
       height: 156px;
-      top: 75px;
-      z-index: 9999;
+      top: 60px;
+      z-index: 999;
       background: url(../images/bg_clima.png) no-repeat top left;
       background-size: 78px 156px;
 
       @media(min-width: 1px) and (max-width: 768px) {
-        top: 35px;
+        top: 30px;
       }
 
       .imgclima_actual {
-        width: 77px;
-        height: 77px;
-        background-color: $morado_oscuro;
-        border-radius: 15px;
+        width: 76px;
+        height: 76px;
+        background-color: #242749;
+        border-radius: 17px;
         float: left;
-        margin-top: 8px;
+        margin-top: 6px;
+        margin-left: 1px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -130,53 +134,53 @@ body {
           justify-content: center;
 
           img {
-            height: 30px;
-            max-width: 36px;
+            max-height: 32px;
+            max-width: 38px;
             object-fit: contain;
           }
         }
       }
 
       .dato_actual {
-        height: 77px;
-        width: 69px;
+        height: 74px;
+        width: 74px;
         float: left;
         display: flex;
         align-items: center;
         justify-content: center;
 
         p {
-          line-height: 1;
-          @include rem(22);
+          font-size: 21px;
           color: $white;
           margin: 0;
           text-align: center;
           letter-spacing: -1.5px;
           font-weight: 700;
+          line-height: 1;
         }
       }
     }
 
-    /* Flechas izquierda y derecha juntas debajo de la etiqueta del clima */
+    /* Flechas izquierda y derecha en la base del distintivo de clima */
     .slider_custom_arrows {
       position: absolute;
-      left: 45px;
-      top: 242px;
-      z-index: 10000;
+      left: 10px;
+      top: 212px;
+      z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
 
       @media(min-width: 1px) and (max-width: 768px) {
-        left: 20px;
-        top: 200px;
+        top: 180px;
+        left: 8px;
       }
 
       .slider_arrow_btn {
-        width: 28px;
-        height: 28px;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
-        background-color: rgba(30, 36, 44, 0.65);
+        background-color: rgba(30, 36, 44, 0.75);
         backdrop-filter: blur(4px);
         border: none;
         display: flex;
@@ -209,30 +213,32 @@ body {
     /* Sección inferior: Pronóstico, Lugares y Ciudades */
     .date_clima {
       position: relative;
-      margin-top: 20px;
+      margin-top: 15px;
 
       h3 {
-        margin: 30px 0 16px;
-        @include rem(18);
-        color: $black;
+        margin: 16px 0 14px;
+        font-size: 17px;
         font-weight: 700;
+        color: $black;
         span {
           font-weight: 300;
+          color: #7A8699;
         }
       }
 
       /* Pronóstico de 3 días */
       .day_week_clima {
         width: 100%;
-        border: 1px solid $gray_linea;
-        border-radius: 12px;
+        border: 1px solid #EEF2F6;
+        border-radius: 14px;
         height: 48px;
         margin-bottom: 8px;
         display: flex;
         align-items: center;
-        overflow: hidden;
         background-color: $white;
-        transition: border-color 0.2s ease;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s ease;
 
         @media(min-width: 1px) and (max-width: 768px) {
           height: auto;
@@ -240,13 +246,13 @@ body {
         }
 
         &:hover {
-          border-color: $blue-gray2;
+          border-color: #DDE8F4;
         }
 
         figure {
-          width: 28px;
+          width: 32px;
           height: 100%;
-          margin: 0 4px 0 8px;
+          margin: 0 4px 0 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -263,50 +269,44 @@ body {
           flex: 1;
           min-width: 0;
           margin: 0;
-          padding: 0 4px;
-          line-height: 1.15;
-          overflow: hidden;
+          padding: 0 6px;
+          line-height: 1.2;
 
           strong {
-            @include rem(11);
-            display: block;
+            font-size: 11px;
             color: $black;
             font-weight: 700;
+            display: block;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
           }
           span {
-            @include rem(9);
-            display: block;
-            color: $gray_texto;
+            font-size: 9px;
+            color: #9AA6B8;
             font-weight: 400;
+            display: block;
             white-space: nowrap;
           }
         }
 
         .temperatura {
-          background-color: $blue-gray2;
+          background-color: #E6EFF8;
           width: 58px;
           min-width: 58px;
           height: 100%;
-          border-radius: 0 11px 11px 0;
+          border-radius: 0 13px 13px 0;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
 
           p {
-            @include rem(11);
-            text-align: center;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            color: $black;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            color: $black;
+            margin: 0;
+            text-align: center;
             white-space: nowrap;
-            line-height: 1;
+            letter-spacing: -0.3px;
           }
 
           &.active {
@@ -320,24 +320,24 @@ body {
 
       /* Lugares para visitar */
       .place {
-        padding-left: 15px;
+        padding-left: 8px;
 
         @media(min-width: 1px) and (max-width: 768px) {
-          padding-left: 15px;
-          margin-bottom: 20px;
+          padding-left: 0;
+          margin-top: 15px;
         }
 
         .head {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
 
           h3 {
-            margin: 30px 0 0;
-            @include rem(18);
-            color: $black;
+            margin: 16px 0 0;
+            font-size: 17px;
             font-weight: 700;
+            color: $black;
             span {
               font-weight: 300;
             }
@@ -346,23 +346,18 @@ body {
           .topreview {
             display: flex;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 16px;
 
             p {
-              &::before {
-                content: "+";
-                display: inline-block;
-                margin-right: 3px;
-                font-weight: bold;
-              }
-              margin: 0 8px 0 0;
-              @include rem(10);
-              color: $gray_texto;
+              font-size: 10px;
+              color: #9AA6B8;
               font-weight: 600;
+              margin: 0 8px 0 0;
+              white-space: nowrap;
             }
 
             figure {
-              margin: 0 -3px 0 0;
+              margin: 0 -4px 0 0;
               display: inline-block;
 
               img {
@@ -370,7 +365,7 @@ body {
                 height: 20px;
                 border-radius: 50%;
                 border: 2px solid $white;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
               }
             }
 
@@ -378,8 +373,8 @@ body {
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              width: 18px;
-              height: 18px;
+              width: 17px;
+              height: 17px;
               border-radius: 50%;
               background-color: $morado;
               color: $white;
@@ -400,49 +395,51 @@ body {
         .content {
           .sites {
             display: grid;
-            grid-template-columns: 145px 140px;
-            grid-template-rows: 75px 75px;
-            gap: 14px;
-            height: 164px;
+            grid-template-columns: 146px 142px;
+            grid-template-rows: 74px 74px;
+            gap: 12px;
+            height: 160px;
 
             figure {
               margin: 0;
               position: relative;
               border-radius: 16px;
               overflow: hidden;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+              box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 
               img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform 0.3s ease;
+                transition: transform 0.25s ease;
               }
 
               &:hover img {
-                transform: scale(1.05);
+                transform: scale(1.04);
               }
 
               figcaption {
                 position: absolute;
-                bottom: 8px;
-                left: 10px;
+                bottom: 7px;
+                left: 9px;
                 color: $white;
-                @include rem(8);
-                font-weight: 600;
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+                font-size: 9px;
+                font-weight: 700;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
                 span {
-                  font-weight: 300;
+                  font-weight: 400;
                   display: block;
+                  font-size: 8px;
+                  opacity: 0.9;
                 }
               }
 
               .plus {
                 position: absolute;
-                bottom: 8px;
-                right: 8px;
-                width: 18px;
-                height: 18px;
+                bottom: 7px;
+                right: 7px;
+                width: 16px;
+                height: 16px;
                 border-radius: 5px;
                 background-color: $morado;
                 cursor: pointer;
@@ -453,45 +450,48 @@ body {
                 &::after {
                   content: "+";
                   color: $white;
-                  font-size: 13px;
-                  line-height: 1;
+                  font-size: 12px;
                   font-weight: bold;
+                  line-height: 1;
                 }
               }
 
               &:nth-child(1) {
                 grid-row: 1 / span 2;
                 grid-column: 1;
-                width: 145px;
-                height: 164px;
+                width: 146px;
+                height: 160px;
 
                 @media(min-width: 1px) and (max-width: 768px) {
                   width: 100%;
-                  margin-bottom: 15px;
+                  margin-bottom: 12px;
                 }
               }
 
               &:nth-child(2) {
                 grid-row: 1;
                 grid-column: 2;
-                width: 140px;
-                height: 75px;
+                width: 142px;
+                height: 74px;
               }
 
               &:nth-child(3) {
                 grid-row: 2;
                 grid-column: 2;
-                width: 140px;
-                height: 75px;
+                width: 142px;
+                height: 74px;
               }
             }
           }
         }
       }
 
-      /* Ciudades y botón Agregar ubicación (Alineación superior simétrica) */
+      /* Ciudades y botón Agregar ubicación (Solapadas sobre el carrusel superior) */
       .paris {
-        padding-left: 15px;
+        margin-top: -60px;
+        position: relative;
+        z-index: 100;
+        padding-left: 10px;
 
         @media(min-width: 1px) and (max-width: 768px) {
           margin-top: 20px;
@@ -500,24 +500,17 @@ body {
 
         .dateparis {
           width: 100%;
-          max-width: 220px;
+          max-width: 222px;
+          margin-left: auto;
           background-color: $white;
           border-radius: 16px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
           margin-bottom: 12px;
           padding: 8px 12px 6px;
-          margin-left: auto;
-
-          &:first-child {
-            margin-top: 30px;
-          }
 
           @media(min-width: 1px) and (max-width: 768px) {
             max-width: 100%;
             margin-left: 0;
-            &:first-child {
-              margin-top: 0;
-            }
           }
 
           .dateparis_header {
@@ -526,10 +519,10 @@ body {
             margin-bottom: 5px;
 
             figure {
-              width: 52px;
-              height: 52px;
-              background-color: $blue-gray3;
-              border-radius: 14px;
+              width: 48px;
+              height: 48px;
+              background-color: #E2ECF6;
+              border-radius: 13px;
               margin: 0 8px 0 0;
               display: flex;
               align-items: center;
@@ -537,36 +530,36 @@ body {
               flex-shrink: 0;
 
               img {
-                max-width: 28px;
-                max-height: 28px;
+                max-width: 26px;
+                max-height: 26px;
                 object-fit: contain;
               }
             }
 
             p.temp {
               margin: 0 6px 0 0;
-              @include rem(19);
+              font-size: 18px;
               font-weight: 700;
-              letter-spacing: -1px;
               color: $black;
               line-height: 1;
+              letter-spacing: -0.5px;
             }
 
             .city_info {
-              border-left: 1px solid $gray_linea;
+              border-left: 1px solid #EEF2F6;
               padding-left: 8px;
 
               p.city {
-                @include rem(13);
+                font-size: 12px;
                 font-weight: 700;
                 color: $black;
                 margin: 0;
                 line-height: 1.2;
               }
               p.country {
-                @include rem(10);
+                font-size: 9px;
                 font-weight: 400;
-                color: $gray_texto;
+                color: #9AA6B8;
                 margin: 0;
                 line-height: 1.2;
               }
@@ -576,17 +569,17 @@ body {
           ul {
             width: 100%;
             margin: 0;
-            padding: 3px 0 0;
+            padding: 4px 0 0;
             display: flex;
             list-style: none;
-            border-top: 1px solid rgba(243, 243, 243, 0.7);
+            border-top: 1px solid #F4F6F9;
 
             li {
               flex: 1;
               display: flex;
               align-items: center;
               justify-content: center;
-              border-right: 1px solid $gray_linea;
+              border-right: 1px solid #EEF2F6;
 
               &:last-child {
                 border-right: none !important;
@@ -595,10 +588,10 @@ body {
               p {
                 margin: 0;
                 text-align: center;
-                color: $gray_texto;
-                @include rem(9);
+                color: #9AA6B8;
+                font-size: 9px;
                 font-weight: 400;
-                line-height: 1.8;
+                line-height: 1.6;
                 white-space: nowrap;
               }
             }
@@ -608,9 +601,9 @@ body {
         /* Botón Agregar ubicación centrado horizontal y verticalmente */
         .addlocations {
           width: 100%;
-          max-width: 220px;
-          height: 72px;
-          border: 2px dashed #E0E6ED;
+          max-width: 222px;
+          height: 62px;
+          border: 2px dashed #D6E0EA;
           background-color: $white;
           border-radius: 16px;
           display: flex;
@@ -625,13 +618,13 @@ body {
           }
 
           button {
-            @include rem(11);
+            font-size: 11px;
             font-weight: 600;
             border: none;
             color: $morado;
-            border-radius: 20px;
-            padding: 8px 20px;
-            background-color: $blue-gray2;
+            border-radius: 18px;
+            padding: 7px 20px;
+            background-color: #E6EFF8;
             cursor: pointer;
             transition: all 0.25s ease;
             outline: none;
@@ -680,7 +673,7 @@ body {
 
       h4 {
         margin: 0;
-        @include rem(18);
+        font-size: 18px;
         font-weight: 700;
         color: $black;
       }
@@ -690,7 +683,7 @@ body {
         border: none;
         font-size: 26px;
         line-height: 1;
-        color: $gray_texto;
+        color: #9AA6B8;
         cursor: pointer;
         padding: 0 4px;
         transition: color 0.2s ease;
@@ -704,8 +697,8 @@ body {
 
     .modal-custom-body {
       p {
-        @include rem(12);
-        color: $gray_texto;
+        font-size: 12px;
+        color: #7A8699;
         line-height: 1.45;
         margin: 0 0 12px;
       }
@@ -714,10 +707,10 @@ body {
         .modal-custom-input {
           width: 100%;
           height: 42px;
-          border: 1.5px solid $gray_linea;
+          border: 1.5px solid #EEF2F6;
           border-radius: 12px;
           padding: 0 14px;
-          @include rem(13);
+          font-size: 13px;
           color: $black;
           outline: none;
           transition: all 0.2s ease;
@@ -737,7 +730,7 @@ body {
 
       .modal-error-msg {
         color: #E53935;
-        @include rem(11);
+        font-size: 11px;
         margin: 8px 0 0;
         display: none;
         line-height: 1.3;
@@ -755,15 +748,15 @@ body {
         border: none;
         border-radius: 20px;
         padding: 9px 22px;
-        @include rem(12);
+        font-size: 12px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.25s ease;
         outline: none;
 
         &.btn-cancel {
-          background-color: $blue-gray2;
-          color: $gray_texto;
+          background-color: #E6EFF8;
+          color: #7A8699;
 
           &:hover {
             background-color: #D1DCF0;
