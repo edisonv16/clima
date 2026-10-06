@@ -1,53 +1,53 @@
 {
-	"datos_bogota" : [
-        {
+	"datos_bogota": [
+		{
 			"url": "../assets/images/rain.png",
-			"clima": "Rain",
+			"clima": "Lluvia",
 			"city": "Bogotá",
 			"country": "Colombia",
-			"temperatura": "17/14",
-			"day": "Friday"
+			"temperatura": "17 / 14",
+			"day": "Viernes"
 		},
 		{
 			"url": "../assets/images/clear.png",
-			"clima": "Sol",
+			"clima": "Despejado",
 			"city": "Bogotá",
 			"country": "Colombia",
-			"temperatura": "24/19",
-			"day": "Saturday"
+			"temperatura": "24 / 19",
+			"day": "Sábado"
 		},
 		{
 			"url": "../assets/images/clouds.png",
-			"clima": "nubes",
+			"clima": "Nublado",
 			"city": "Bogotá",
 			"country": "Colombia",
-			"temperatura": "19/15",
-			"day": "Sunday"
+			"temperatura": "19 / 15",
+			"day": "Domingo"
 		},
 		{
 			"url": "../assets/images/cloudy.png",
-			"clima": "nube blanca con sol",
+			"clima": "Parcialmente nublado",
 			"city": "Bogotá",
 			"country": "Colombia",
-			"temperatura": "19/17",
-			"day": "Today"
+			"temperatura": "19°C",
+			"day": "Hoy"
 		}
 	],
 	"datos_paris": [
-        {
+		{
 			"url": "../assets/images/cloudy_moon.png",
-			"clima": "nubes con luna",
+			"clima": "Nuageux avec lune",
 			"city": "Paris",
-			"country": "Francia",
-			"temperatura": "16/12",
-			"day": "Sunday"
+			"country": "France",
+			"temperatura": "16°C",
+			"day": "Dimanche"
 		},
 		{
 			"url": "../assets/images/cloudy_sun.png",
-			"clima": "nubes moradas con sol",
-			"city": "Lion",
-			"country": "Paris",
-			"temperatura": "14/12",
+			"clima": "Nuageux ensoleillé",
+			"city": "Lyon",
+			"country": "France",
+			"temperatura": "14°C",
 			"day": ""
 		}
 	]

@@ -4,76 +4,69 @@ $(document).ready(function() {
 
   $.get(datosLocales, function(respuesta, status) {
     if (status == 'success') {
-      var temperatura_bogota1 = respuesta.datos_bogota[0].temperatura;
-      var lluvia = respuesta.datos_bogota[0].url;
-      var day_bogota1 = respuesta.datos_bogota[0].day;
-      var clima_bogota1 = respuesta.datos_bogota[0].clima;
+      var bogota = respuesta.datos_bogota;
+      var paris = respuesta.datos_paris;
 
-      // clear
-      var sol = respuesta.datos_bogota[1].url;
-      var day_bogota2 = respuesta.datos_bogota[1].day;
-      var clima_bogota2 = respuesta.datos_bogota[1].clima;
-      var temperatura_bogota2 = respuesta.datos_bogota[1].temperatura;
+      // Pronóstico 3 días Bogotá
+      $(".rain .temperatura p").text(bogota[0].temperatura);
+      $(".rain p strong").text(bogota[0].day);
+      $(".rain p span").text(bogota[0].clima);
+      $(".rain figure img").attr("src", bogota[0].url);
 
-      // clouds
-      var nubes = respuesta.datos_bogota[2].url;
-      var day_bogota3 = respuesta.datos_bogota[2].day;
-      var clima_bogota3 = respuesta.datos_bogota[2].clima;
-      var temperatura_bogota3 = respuesta.datos_bogota[2].temperatura;
+      $(".clear figure img").attr("src", bogota[1].url);
+      $(".clear p strong").text(bogota[1].day);
+      $(".clear p span").text(bogota[1].clima);
+      $(".clear .temperatura p").text(bogota[1].temperatura);
 
-      // clouds_Moon (Paris)
-      var nubes_luna = respuesta.datos_paris[0].url;
-      var city_francia2 = respuesta.datos_paris[0].city;
-      var country_francia2 = respuesta.datos_paris[0].country;
-      var temperatura_francia2 = respuesta.datos_paris[0].temperatura;
+      $(".clouds figure img").attr("src", bogota[2].url);
+      $(".clouds p strong").text(bogota[2].day);
+      $(".clouds p span").text(bogota[2].clima);
+      $(".clouds .temperatura p").text(bogota[2].temperatura);
 
-      // clouds_sun (Lyon)
-      var nubes_sol = respuesta.datos_paris[1].url;
-      var city_francia1 = respuesta.datos_paris[1].city;
-      var country_francia1 = respuesta.datos_paris[1].country;
-      var temperatura_francia1 = respuesta.datos_paris[1].temperatura;
+      // Tarjetas de Francia (Lyon y Paris en francés)
+      // Paris
+      $(".cloudy_moon figure img").attr("src", paris[0].url);
+      $(".cloudy_moon .temp").text(paris[0].temperatura);
+      $(".cloudy_moon .city").text(paris[0].city);
+      $(".cloudy_moon .country").text(paris[0].country);
 
-      // Clima actual Bogotá
-      var nubesblancas_sol = respuesta.datos_bogota[3].url;
-      var temperatura_bogota4 = respuesta.datos_bogota[3].temperatura;
+      // Lyon
+      $(".cloudy_sun figure img").attr("src", paris[1].url);
+      $(".cloudy_sun .temp").text(paris[1].temperatura);
+      $(".cloudy_sun .city").text(paris[1].city);
+      $(".cloudy_sun .country").text(paris[1].country);
 
-      // Renderizar imágenes y valores base
-      $(".rain .temperatura p").text(temperatura_bogota1);
-      $(".rain p strong").text(day_bogota1);
-      $(".rain p span").text(clima_bogota1);
-      $(".rain figure img").attr("src", lluvia);
-
-      $(".clear figure img").attr("src", sol);
-      $(".clear p strong").text(day_bogota2);
-      $(".clear p span").text(clima_bogota2);
-      $(".clear .temperatura p").text(temperatura_bogota2);
-
-      $(".clouds figure img").attr("src", nubes);
-      $(".clouds p strong").text(day_bogota3);
-      $(".clouds p span").text(clima_bogota3);
-      $(".clouds .temperatura p").text(temperatura_bogota3);
-
-      $(".cloudy_moon figure img").attr("src", nubes_luna);
-      $(".cloudy_moon .temp").text(temperatura_francia2);
-      $(".cloudy_moon div .city").text(city_francia2);
-      $(".cloudy_moon div .country").text(country_francia2);
-
-      $(".cloudy_sun figure img").attr("src", nubes_sol);
-      $(".cloudy_sun .temp").text(temperatura_francia1);
-      $(".cloudy_sun div .city").text(city_francia1);
-      $(".cloudy_sun div .country").text(country_francia1);
-
-      $(".cloudy .imgclima_actual figure img").attr("src", nubesblancas_sol);
-      $(".cloudy .dato_actual p").text(temperatura_bogota4);
+      // Clima actual Bogotá (distintivo flotante)
+      $(".cloudy .imgclima_actual figure img").attr("src", bogota[3].url);
+      $(".cloudy .dato_actual p").text(bogota[3].temperatura);
 
       // 2. Consultar API de OpenWeatherMap en vivo para actualizar con datos reales
       consultarApiClima();
     }
   });
 
+  function traducirClima(main) {
+    if (!main) return "Nublado";
+    var m = main.toLowerCase();
+    if (m.indexOf("rain") !== -1 || m.indexOf("drizzle") !== -1) return "Lluvia";
+    if (m.indexOf("clear") !== -1) return "Despejado";
+    if (m.indexOf("cloud") !== -1) return "Nublado";
+    if (m.indexOf("thunder") !== -1) return "Tormenta";
+    if (m.indexOf("snow") !== -1) return "Nieve";
+    if (m.indexOf("mist") !== -1 || m.indexOf("fog") !== -1) return "Neblina";
+    return "Nublado";
+  }
+
+  function direccionVientoFrances(deg) {
+    if (deg === undefined || deg === null) return "ouest";
+    var dirs = ["nord", "nord-est", "est", "sud-est", "sud", "sud-ouest", "ouest", "nord-ouest"];
+    var idx = Math.round(deg / 45) % 8;
+    return dirs[idx];
+  }
+
   function consultarApiClima() {
     var apiKey = "5034801f02b7a43482db1c080227f31b";
-    var diasSemana = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
     // Clima actual Bogotá
     $.ajax({
@@ -86,7 +79,7 @@ $(document).ready(function() {
 
           // Asignar icono dinámico según clima
           var mainClima = (data.weather && data.weather[0]) ? data.weather[0].main.toLowerCase() : "";
-          if (mainClima.indexOf("rain") !== -1) {
+          if (mainClima.indexOf("rain") !== -1 || mainClima.indexOf("drizzle") !== -1) {
             $(".cloudy .imgclima_actual figure img").attr("src", "../assets/images/rain.png");
           } else if (mainClima.indexOf("clear") !== -1) {
             $(".cloudy .imgclima_actual figure img").attr("src", "../assets/images/clear.png");
@@ -100,7 +93,7 @@ $(document).ready(function() {
       }
     });
 
-    // Pronóstico 3 días Bogotá
+    // Pronóstico 3 días Bogotá (en español)
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/forecast?q=Bogota,CO&appid=" + apiKey + "&units=metric",
       dataType: "json",
@@ -113,19 +106,19 @@ $(document).ready(function() {
           if (step1) {
             var d1 = new Date(step1.dt * 1000);
             $(".rain p strong").text(diasSemana[d1.getDay()]);
-            $(".rain p span").text(step1.weather[0].main);
+            $(".rain p span").text(traducirClima(step1.weather[0].main));
             $(".rain .temperatura p").text(Math.round(step1.main.temp_max) + " / " + Math.round(step1.main.temp_min));
           }
           if (step2) {
             var d2 = new Date(step2.dt * 1000);
             $(".clear p strong").text(diasSemana[d2.getDay()]);
-            $(".clear p span").text(step2.weather[0].main);
+            $(".clear p span").text(traducirClima(step2.weather[0].main));
             $(".clear .temperatura p").text(Math.round(step2.main.temp_max) + " / " + Math.round(step2.main.temp_min));
           }
           if (step3) {
             var d3 = new Date(step3.dt * 1000);
             $(".clouds p strong").text(diasSemana[d3.getDay()]);
-            $(".clouds p span").text(step3.weather[0].main);
+            $(".clouds p span").text(traducirClima(step3.weather[0].main));
             $(".clouds .temperatura p").text(Math.round(step3.main.temp_max) + " / " + Math.round(step3.main.temp_min));
           }
         }
@@ -135,31 +128,37 @@ $(document).ready(function() {
       }
     });
 
-    // Clima París (Francia)
+    // Clima París (Francia) - en francés
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/weather?q=Paris,FR&appid=" + apiKey + "&units=metric",
       dataType: "json",
       success: function(data) {
         if (data && data.main) {
           $(".cloudy_moon .temp").text(Math.round(data.main.temp) + "°C");
-          $(".cloudy_moon ul li:first-child p").text("humidity " + data.main.humidity + "%");
+          $(".cloudy_moon .city").text("Paris");
+          $(".cloudy_moon .country").text("France");
+          $(".cloudy_moon ul li .humidity").text("humidité " + data.main.humidity + "%");
           if (data.wind) {
-            $(".cloudy_moon ul li:last-child p").text(data.wind.speed + " km/h");
+            $(".cloudy_moon ul li .wind-dir").text(direccionVientoFrances(data.wind.deg));
+            $(".cloudy_moon ul li .wind-speed").text(data.wind.speed + " km/h");
           }
         }
       }
     });
 
-    // Clima Lyon (Francia)
+    // Clima Lyon (Francia) - en francés
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/weather?q=Lyon,FR&appid=" + apiKey + "&units=metric",
       dataType: "json",
       success: function(data) {
         if (data && data.main) {
           $(".cloudy_sun .temp").text(Math.round(data.main.temp) + "°C");
-          $(".cloudy_sun ul li:first-child p").text("humidity " + data.main.humidity + "%");
+          $(".cloudy_sun .city").text("Lyon");
+          $(".cloudy_sun .country").text("France");
+          $(".cloudy_sun ul li .humidity").text("humidité " + data.main.humidity + "%");
           if (data.wind) {
-            $(".cloudy_sun ul li:last-child p").text(data.wind.speed + " km/h");
+            $(".cloudy_sun ul li .wind-dir").text(direccionVientoFrances(data.wind.deg));
+            $(".cloudy_sun ul li .wind-speed").text(data.wind.speed + " km/h");
           }
         }
       }

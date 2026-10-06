@@ -1,28 +1,33 @@
 /*------------------------
-slider
+slider & weather dashboard
 ------------------------*/
-body{
+body {
   width: 1024px;
   background-color: $blue-gray;
   margin: 0 auto;
-  @media(min-width:1px) and (max-width:768px){
+
+  @media(min-width: 1px) and (max-width: 768px) {
     width: 100%;
   }
+
   .clima {
     padding: 35px;
     border-radius: 30px;
     width: 855px;
-    height: 580px;
+    height: 590px;
     background-color: $white;
-    margin: 80px auto 0;
+    margin: 60px auto 0;
     position: relative;
-    @media(min-width:1px) and (max-width:768px){
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+
+    @media(min-width: 1px) and (max-width: 768px) {
       width: 100%;
       height: auto;
       padding: 15px;
-      margin: 30px auto 30px;
+      margin: 20px auto;
     }
-  
+
+    /* Carrusel principal bxSlider */
     .bx-wrapper {
       border: none;
       box-shadow: none;
@@ -30,23 +35,12 @@ body{
       margin-bottom: 0;
       margin: 0 auto;
       overflow: hidden;
-      .bx-pager {
-        position: absolute;
-        top: 20px;
-        right: 200px;
-        width: 100px;
-        height: 100px;
-        padding: 0;
-        &.bx-default-pager{
-          a{
-            background: $negro;
-            &.active{
-              background-color: $blue-first;
-            }
-          }
-        }
-      }
+      position: relative;
+      border-radius: 25px;
+
       .bxslider {
+        margin: 0;
+        padding: 0;
         div {
           img {
             max-height: 245px;
@@ -54,394 +48,546 @@ body{
             width: 100%;
             border-radius: 25px;
             overflow: hidden;
+            display: block;
           }
         }
       }
-      .bx-controls{
-        .bx-pager{
-          right: 0;
-          top:10px;
-          .bx-pager-item{
-            a{
-              border-radius:initial;
+
+      /* Paginador del slider (puntos violeta/púrpura) */
+      .bx-controls {
+        .bx-pager {
+          position: absolute;
+          top: 16px;
+          right: 20px;
+          width: auto;
+          padding: 0;
+          z-index: 50;
+
+          &.bx-default-pager {
+            .bx-pager-item {
+              display: inline-block;
+              margin: 0 3px;
+
+              a {
+                display: block;
+                width: 10px;
+                height: 10px;
+                background-color: rgba(43, 53, 65, 0.45);
+                border-radius: 3px;
+                text-indent: -9999px;
+                transition: all 0.25s ease;
+
+                &.active, &:hover {
+                  background-color: $morado !important;
+                  transform: scale(1.15);
+                  box-shadow: 0 2px 6px rgba(121, 102, 233, 0.6);
+                }
+              }
             }
           }
         }
+
+        /* Flechas direccionales */
+        .bx-controls-direction {
+          a {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background-color: rgba(43, 53, 65, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            text-indent: -9999px;
+            z-index: 50;
+            transition: all 0.25s ease;
+
+            &:hover {
+              background-color: $morado;
+              box-shadow: 0 4px 10px rgba(121, 102, 233, 0.5);
+            }
+          }
+          .bx-prev {
+            left: 15px;
+          }
+          .bx-next {
+            right: 15px;
+          }
+        }
       }
     }
 
-    .clima_actual{
+    /* Distintivo flotante clima actual (Bogotá) */
+    .clima_actual {
       position: absolute;
-      left: 0;
+      left: 35px;
+      top: 55px;
+      z-index: 999;
       width: 78px;
       height: 156px;
-      top: 75px;
-      z-index: 9999;
-      background-image: url(../images/bg_clima.png);
-      @media(min-width:1px) and (max-width:768px){
-        top:35px;
+      background: url(../images/bg_clima.png) no-repeat top left;
+      background-size: 78px 156px;
+
+      @media(min-width: 1px) and (max-width: 768px) {
+        top: 25px;
+        left: 20px;
       }
-      .imgclima_actual{
-        width: 77px;
-        height: 77px;
+
+      .imgclima_actual {
+        width: 76px;
+        height: 76px;
         background-color: $morado_oscuro;
-        border-radius: 15px;
-        float: left;
-        margin-top: 8px;
-        figure{
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+        margin-left: 1px;
+        box-shadow: 0 4px 15px rgba(47, 53, 128, 0.25);
+
+        figure {
           margin: 0;
-          img{
-            height: 30px;
-            margin: 20px 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+
+          img {
+            max-height: 38px;
+            max-width: 44px;
+            margin: 0;
+            display: block;
+            object-fit: contain;
           }
         }
       }
-      .dato_actual{
-        height: 77px;
-        width: 69px;
-        float: left;
-        p{
-          line-height: 62px;
-          @include rem(25);
-          color:$white;
+
+      .dato_actual {
+        height: 70px;
+        width: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          @include rem(22);
+          color: $white;
           margin: 0;
           text-align: center;
-          letter-spacing: -2px;
+          letter-spacing: -1px;
+          font-weight: 700;
+          line-height: 1;
         }
       }
     }
-    .date_clima{
+
+    /* Sección inferior: Pronóstico, Lugares y Ciudades francesas */
+    .date_clima {
       position: relative;
-      h3{
-        margin: 40px 0 30px;
-        @include rem(20);
-        span{
-          font-weight: 100;
+      margin-top: 20px;
+
+      h3 {
+        margin: 25px 0 15px;
+        @include rem(18);
+        color: $black;
+        font-weight: 700;
+        span {
+          font-weight: 300;
         }
       }
-      .day_week_clima{
+
+      /* Pronóstico de 3 días */
+      .day_week_clima {
         width: 100%;
         border: 1px solid $gray_linea;
-        border-radius: 10px;
+        border-radius: 12px;
         height: 50px;
-        margin-bottom: 7px;
-        position: relative;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
         overflow: hidden;
-        @media(min-width:1px) and (max-width:768px){
+        background-color: $white;
+        transition: border-color 0.2s ease;
+
+        @media(min-width: 1px) and (max-width: 768px) {
           height: auto;
+          padding: 6px 0;
         }
-        figure{
-          float: left;
-          width: 35px;
+
+        &:hover {
+          border-color: $blue-gray2;
+        }
+
+        figure {
+          width: 44px;
           height: 100%;
-          margin: 0 0 0 10px;
-          padding: 11px 0;
-          img{
-            height: 20px;
-            object-fit: cover;
+          margin: 0 6px 0 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+
+          img {
+            max-height: 24px;
+            max-width: 28px;
+            object-fit: contain;
           }
         }
 
-        p{
-          float: left;
-          margin: 11px 0;
-          line-height: initial;
-          
-          span{
+        p {
+          flex: 1;
+          margin: 0;
+          line-height: 1.2;
+
+          strong {
+            @include rem(11);
+            display: block;
+            color: $black;
+            font-weight: 700;
+          }
+          span {
             @include rem(9);
             display: block;
             color: $gray_texto;
-            font-weight: 300;
-            @media(min-width:1px) and (max-width:768px){
-              @include rem(20);
-            }
-
-          }
-          strong{
-            @include rem(9);
-            display: block;
-            color: $black;
-            font-weight: bold;
-            @media(min-width:1px) and (max-width:768px){
-              @include rem(20);
-            }
+            font-weight: 400;
           }
         }
 
-        .temperatura{
+        .temperatura {
           background-color: $blue-gray2;
-          @include rem(10);
-          float: right;
+          width: 60px;
           height: 100%;
-          width: 55px;
-          border-radius: 9px;
-          p{
-            @include rem(14);
+          border-radius: 0 11px 11px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+
+          p {
+            @include rem(12);
             text-align: center;
-            width: 100%;
-            line-height: 50px;
-            letter-spacing: -2px;
             margin: 0;
             color: $black;
-            font-weight: bold;
+            font-weight: 700;
+            letter-spacing: -0.5px;
           }
-          &.active{
+
+          &.active {
             background-color: $morado;
-            p{
+            p {
               color: $white;
             }
           }
         }
       }
 
-      .place{
-        padding-left: 24px;
-        @media(min-width:1px) and (max-width:768px){
-          margin:0 0 20px 0;
+      /* Lugares para visitar */
+      .place {
+        padding-left: 20px;
+
+        @media(min-width: 1px) and (max-width: 768px) {
+          padding-left: 15px;
+          margin-bottom: 20px;
         }
-        .head{
-          display: block;
-          width: 100%;
-          h3{
-            @include rem(20);
-            display: inline-block;
-            span{
-              font-weight: 100;
+
+        .head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 12px;
+
+          h3 {
+            margin: 25px 0 0;
+            @include rem(18);
+            color: $black;
+            font-weight: 700;
+            span {
+              font-weight: 300;
             }
           }
-          .topreview{
-            float: right;
-            margin: 40px 13px 0 0;
-            p{
-              &::before{
+
+          .topreview {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+
+            p {
+              &::before {
                 content: "+";
                 display: inline-block;
-                height: 15px;
-                width: 15px;
-                @include rem(12);
+                margin-right: 3px;
                 font-weight: bold;
-
               }
               @include rem(9);
-              font-weight: 400;
               color: $gray_texto;
-              margin: 0;
-              display: inline-block;
+              margin: 0 6px 0 0;
             }
-            figure{
-              margin: 0;
-              width: 15px;
-              height: 15px;
+
+            figure {
+              margin: 0 2px;
+              width: 18px;
+              height: 18px;
               border-radius: 5px;
-              display: inline-block;
-              vertical-align: middle;
               overflow: hidden;
-              img{
+
+              img {
                 width: 100%;
                 height: 100%;
-                float: left;
+                object-fit: cover;
+                display: block;
               }
             }
-            a{
-              margin: 0;
-              width: 15px;
-              height: 15px;
+
+            a {
+              width: 18px;
+              height: 18px;
               border-radius: 5px;
-              display: inline-block;
               background-color: $morado;
-              vertical-align: middle;
-              margin-left: 3px;
+              margin-left: 4px;
+              display: inline-block;
             }
           }
         }
-          
-        
-        .content{
-          height: 165px;
-          position: relative;
-          display: block;
-          @media(min-width:1px) and (max-width:768px){
-            height: auto;
-          }
-          .sites{
-            
-            figure{
-              float: left;
-              border-radius: 25px;
+
+        .content {
+          .sites {
+            display: flex;
+            align-items: flex-start;
+
+            @media(min-width: 1px) and (max-width: 768px) {
+              flex-direction: column;
+            }
+
+            figure {
+              border-radius: 18px;
               margin-bottom: 0;
               position: relative;
-              img{
-                width: auto;
+              overflow: hidden;
+
+              img {
+                width: 100%;
                 height: 100%;
                 object-fit: cover;
+                display: block;
               }
-              figcaption{
+
+              figcaption {
                 position: absolute;
-                top:10px;
+                top: 10px;
                 left: 10px;
                 color: $white;
                 @include rem(8);
+                font-weight: 600;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+                span {
+                  font-weight: 300;
+                  display: block;
+                }
               }
-              &:nth-child(1){
+
+              .plus {
+                position: absolute;
+                bottom: 8px;
+                right: 8px;
+                width: 18px;
+                height: 18px;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+
+                &::after {
+                  content: "+";
+                  color: $white;
+                  font-size: 13px;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  line-height: 1;
+                  font-weight: bold;
+                }
+
+                &.active {
+                  background-color: $morado;
+                }
+              }
+
+              &:nth-child(1) {
                 height: 165px;
-                width: 150px;
-                margin-right:20px ;
-                overflow: hidden;
-                @media(min-width:1px) and (max-width:768px){
+                width: 145px;
+                margin-right: 14px;
+                flex-shrink: 0;
+
+                @media(min-width: 1px) and (max-width: 768px) {
                   width: 100%;
-                  margin-bottom: 20px;
-                  img{
-                    width: 100%;
-                    
-                  }
+                  margin-bottom: 15px;
                 }
               }
-              &:nth-child(2){
-                height: 45px;
-                width: 140px;
-                border-radius: 15px;
-                margin-bottom: 20px;
-                overflow: hidden;
-                @media(min-width:1px) and (max-width:768px){
-                  width: 45%;
-                  margin-right: 5%;
-                  height: 95px;
-                }
-                img{
-                  width: 100%;
-                }
+
+              &:nth-child(2) {
+                height: 75px;
+                width: 135px;
+                margin-bottom: 12px;
+                border-radius: 14px;
               }
-              &:nth-child(3){
-                height: 95px;
-                width: 140px;
-                border-radius: 15px;
-                overflow: hidden;
-                @media(min-width:1px) and (max-width:768px){
-                  width: 45%;
-                  margin-left: 5%;
-                }
+
+              &:nth-child(3) {
+                height: 75px;
+                width: 135px;
+                border-radius: 14px;
               }
             }
           }
         }
       }
 
-      .paris{
+      /* Ciudades francesas (Lyon, Paris) y botón Add Locations */
+      .paris {
         width: 100%;
         position: absolute;
         bottom: 0;
         right: 0;
-        @media(min-width:1px) and (max-width:768px){
+
+        @media(min-width: 1px) and (max-width: 768px) {
           position: relative;
+          margin-top: 20px;
         }
-        
-        
-        .dateparis{
-          height: 95px;
+
+        .dateparis {
           width: 215px;
           background-color: $white;
-          border-radius: 15px;
-          box-shadow: 0 10px 50px rgba(0,0,0,0.2);
-          margin-bottom: 20px;
-          @media(min-width:1px) and (max-width:768px){
+          border-radius: 16px;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+          margin-bottom: 14px;
+          padding: 10px 12px 6px;
+
+          @media(min-width: 1px) and (max-width: 768px) {
             width: 100%;
-            height: auto;
           }
 
-          figure{
-            display: inline-block;
-            width: 65px;
-            height: 65px;
-            background-color: $blue-gray3;
-            border-radius: 15px;
-            margin:0 18px 0 0;
-            vertical-align: top;
-            img{
-              height: 30px;
-              margin: 12px 6px;
-            }
-          }
-          p{
-            display: inline-block;
-            margin: 0;
-            
-            &.temp{
-              line-height: 65px;
-              @include rem(25);
-              letter-spacing: -2px;
-            }
-          }
-          div{
-            display: inline-block;
-            p{
-              display: block;
-              margin: 0;
-              line-height: initial;
-              border-left: 1px solid $gray_linea;
-              padding-left: 10px;
-              &.country{
-                @include rem(10);
-                @media(min-width:1px) and (max-width:768px){
-                  @include rem(13);
-                }
-              }
-              &.city{
-                @include rem(14);
-                @media(min-width:1px) and (max-width:768px){
-                  @include rem(20);
-                }
-              }
-            }
-          }
-          ul{
-            width: 90%;
-            margin: 0 5%;
-            padding: 0;
+          .dateparis_header {
             display: flex;
-            li{
-              display: inline-flex;
-              width: 100%;
-              @include rem(12);
-              border-right: 1px solid $gray_linea;
-              p{
+            align-items: center;
+            margin-bottom: 6px;
+
+            figure {
+              width: 56px;
+              height: 56px;
+              background-color: $blue-gray3;
+              border-radius: 14px;
+              margin: 0 10px 0 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+
+              img {
+                max-height: 32px;
+                max-width: 36px;
                 margin: 0;
-                width: 100%;
+                display: block;
+                object-fit: contain;
+              }
+            }
+
+            p.temp {
+              margin: 0 8px 0 0;
+              @include rem(20);
+              font-weight: 700;
+              letter-spacing: -1px;
+              color: $black;
+              line-height: 1;
+            }
+
+            .city_info {
+              border-left: 1px solid $gray_linea;
+              padding-left: 8px;
+
+              p.city {
+                @include rem(13);
+                font-weight: 700;
+                color: $black;
+                margin: 0;
+                line-height: 1.2;
+              }
+              p.country {
+                @include rem(10);
+                font-weight: 400;
+                color: $gray_texto;
+                margin: 0;
+                line-height: 1.2;
+              }
+            }
+          }
+
+          ul {
+            width: 100%;
+            margin: 0;
+            padding: 3px 0 0;
+            display: flex;
+            list-style: none;
+            border-top: 1px solid rgba(243, 243, 243, 0.7);
+
+            li {
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-right: 1px solid $gray_linea;
+
+              &:last-child {
+                border-right: none !important;
+              }
+
+              p {
+                margin: 0;
                 text-align: center;
                 color: $gray_texto;
-                line-height: 30px;
-                @include rem(10);
-                font-weight: 300;
+                @include rem(9);
+                font-weight: 400;
+                line-height: 1.8;
               }
             }
           }
         }
-        .addlocations{
-          width:215px;
-          height: 115px;
-          border: 2px dashed $gray_linea;
+
+        /* Botón Ajouter un lieu (centrado horizontal y verticalmente) */
+        .addlocations {
+          width: 215px;
+          height: 85px;
+          border: 2px dashed #E0E6ED;
           background-color: $white;
-          border-radius: 15px;
-          text-align: center;
-          @media(min-width:1px) and (max-width:768px){
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 5px;
+
+          @media(min-width: 1px) and (max-width: 768px) {
             width: 100%;
           }
-          
-          button{
-            @include rem(12);
+
+          button {
+            @include rem(11);
+            font-weight: 600;
             border: none;
-            text-align: center;
-            color:$morado;
-            border-radius: 15px;
-            padding: 8px 0;
-            display: block;
-            width: 50%;
-            margin: 20px auto 0;
+            color: $morado;
+            border-radius: 20px;
+            padding: 8px 20px;
             background-color: $blue-gray2;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            outline: none;
+
+            &:hover {
+              background-color: $morado;
+              color: $white;
+              box-shadow: 0 4px 12px rgba(121, 102, 233, 0.35);
+            }
           }
         }
       }
     }
   }
 }
-
-
