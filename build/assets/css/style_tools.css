@@ -32,14 +32,6 @@ body .clima {
   }
 }
 body .clima {
-  /* Contenedor relativo del slider superior */
-}
-body .clima .slider_wrapper_rel {
-  position: relative;
-  border-radius: 25px;
-  overflow: hidden;
-}
-body .clima {
   /* Carrusel principal bxSlider */
 }
 body .clima .bx-wrapper {
@@ -97,76 +89,71 @@ body .clima .bx-wrapper .bx-controls .bx-controls-direction {
   display: none !important;
 }
 body .clima {
-  /* Distintivo flotante clima actual (Bogotá) */
+  /* Distintivo flotante clima actual (Bogotá) - Posición original idéntica */
 }
 body .clima .clima_actual {
   position: absolute;
-  left: 35px;
-  top: 55px;
-  z-index: 999;
+  left: 0;
   width: 78px;
   height: 156px;
+  top: 75px;
+  z-index: 9999;
   background: url(../images/bg_clima.png) no-repeat top left;
   background-size: 78px 156px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .clima_actual {
-    top: 25px;
-    left: 20px;
+    top: 35px;
   }
 }
 body .clima .clima_actual .imgclima_actual {
-  width: 76px;
-  height: 76px;
+  width: 77px;
+  height: 77px;
   background-color: #2F3580;
-  border-radius: 16px;
+  border-radius: 15px;
+  float: left;
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
-  margin-left: 1px;
-  box-shadow: 0 4px 15px rgba(47, 53, 128, 0.25);
 }
 body .clima .clima_actual .imgclima_actual figure {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 body .clima .clima_actual .imgclima_actual figure img {
-  max-height: 38px;
-  max-width: 44px;
-  margin: 0;
-  display: block;
+  height: 30px;
+  max-width: 36px;
   object-fit: contain;
 }
 body .clima .clima_actual .dato_actual {
-  height: 70px;
-  width: 76px;
+  height: 77px;
+  width: 69px;
+  float: left;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 body .clima .clima_actual .dato_actual p {
+  line-height: 1;
   font-size: 22px;
   font-size: calc(22 / 16 * 1rem);
   color: #FFF;
   margin: 0;
   text-align: center;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   font-weight: 700;
-  line-height: 1;
 }
 body .clima {
-  /* Flechas izquierda y derecha juntas en el costado izquierdo inferior debajo de la temperatura */
+  /* Flechas izquierda y derecha juntas debajo de la etiqueta del clima */
 }
 body .clima .slider_custom_arrows {
   position: absolute;
-  left: 42px;
-  bottom: 14px;
-  z-index: 1000;
+  left: 45px;
+  top: 242px;
+  z-index: 10000;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -174,12 +161,12 @@ body .clima .slider_custom_arrows {
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .slider_custom_arrows {
     left: 20px;
-    bottom: 12px;
+    top: 200px;
   }
 }
 body .clima .slider_custom_arrows .slider_arrow_btn {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background-color: rgba(30, 36, 44, 0.65);
   backdrop-filter: blur(4px);
@@ -187,7 +174,7 @@ body .clima .slider_custom_arrows .slider_arrow_btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   padding: 0;
   transition: all 0.25s ease;
@@ -200,7 +187,7 @@ body .clima .slider_custom_arrows .slider_arrow_btn svg {
 body .clima .slider_custom_arrows .slider_arrow_btn:hover {
   background-color: #7966E9;
   color: #FFF;
-  box-shadow: 0 4px 12px rgba(121, 102, 233, 0.45);
+  box-shadow: 0 4px 10px rgba(121, 102, 233, 0.45);
   transform: translateY(-1px);
 }
 body .clima .slider_custom_arrows .slider_arrow_btn:active {
@@ -214,7 +201,7 @@ body .clima .date_clima {
   margin-top: 20px;
 }
 body .clima .date_clima h3 {
-  margin: 25px 0 15px;
+  margin: 30px 0 16px;
   font-size: 18px;
   font-size: calc(18 / 16 * 1rem);
   color: #2B3541;
@@ -230,7 +217,7 @@ body .clima .date_clima .day_week_clima {
   width: 100%;
   border: 1px solid #F3F3F3;
   border-radius: 12px;
-  height: 50px;
+  height: 48px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -248,23 +235,26 @@ body .clima .date_clima .day_week_clima:hover {
   border-color: #DDE8F4;
 }
 body .clima .date_clima .day_week_clima figure {
-  width: 44px;
+  width: 28px;
   height: 100%;
-  margin: 0 6px 0 10px;
+  margin: 0 4px 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 body .clima .date_clima .day_week_clima figure img {
-  max-height: 24px;
-  max-width: 28px;
+  max-height: 20px;
+  max-width: 22px;
   object-fit: contain;
 }
 body .clima .date_clima .day_week_clima p {
   flex: 1;
+  min-width: 0;
   margin: 0;
-  line-height: 1.2;
+  padding: 0 4px;
+  line-height: 1.15;
+  overflow: hidden;
 }
 body .clima .date_clima .day_week_clima p strong {
   font-size: 11px;
@@ -272,6 +262,9 @@ body .clima .date_clima .day_week_clima p strong {
   display: block;
   color: #2B3541;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body .clima .date_clima .day_week_clima p span {
   font-size: 9px;
@@ -279,28 +272,31 @@ body .clima .date_clima .day_week_clima p span {
   display: block;
   color: #B1B1B1;
   font-weight: 400;
+  white-space: nowrap;
 }
 body .clima .date_clima .day_week_clima .temperatura {
   background-color: #DDE8F4;
-  min-width: 68px;
-  width: 72px;
+  width: 58px;
+  min-width: 58px;
   height: 100%;
   border-radius: 0 11px 11px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: 0 6px;
 }
 body .clima .date_clima .day_week_clima .temperatura p {
   font-size: 11px;
   font-size: calc(11 / 16 * 1rem);
   text-align: center;
+  width: 100%;
   margin: 0;
+  padding: 0;
   color: #2B3541;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
+  line-height: 1;
 }
 body .clima .date_clima .day_week_clima .temperatura.active {
   background-color: #7966E9;
@@ -312,7 +308,7 @@ body .clima .date_clima {
   /* Lugares para visitar */
 }
 body .clima .date_clima .place {
-  padding-left: 20px;
+  padding-left: 15px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .place {
@@ -327,7 +323,7 @@ body .clima .date_clima .place .head {
   margin-bottom: 12px;
 }
 body .clima .date_clima .place .head h3 {
-  margin: 25px 0 0;
+  margin: 30px 0 0;
   font-size: 18px;
   font-size: calc(18 / 16 * 1rem);
   color: #2B3541;
@@ -339,7 +335,7 @@ body .clima .date_clima .place .head h3 span {
 body .clima .date_clima .place .head .topreview {
   display: flex;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 body .clima .date_clima .place .head .topreview p::before {
   content: "+";
@@ -348,19 +344,19 @@ body .clima .date_clima .place .head .topreview p::before {
   font-weight: bold;
 }
 body .clima .date_clima .place .head .topreview p {
-  margin: 0 10px 0 0;
+  margin: 0 8px 0 0;
   font-size: 10px;
   font-size: calc(10 / 16 * 1rem);
   color: #B1B1B1;
   font-weight: 600;
 }
 body .clima .date_clima .place .head .topreview figure {
-  margin: 0 -4px 0 0;
+  margin: 0 -3px 0 0;
   display: inline-block;
 }
 body .clima .date_clima .place .head .topreview figure img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid #FFF;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
@@ -374,7 +370,7 @@ body .clima .date_clima .place .head .topreview a {
   border-radius: 50%;
   background-color: #7966E9;
   color: #FFF;
-  margin-left: 8px;
+  margin-left: 6px;
   text-decoration: none;
   font-size: 11px;
   line-height: 1;
@@ -385,8 +381,11 @@ body .clima .date_clima .place .head .topreview a::before {
   font-weight: bold;
 }
 body .clima .date_clima .place .content .sites {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 145px 140px;
+  grid-template-rows: 75px 75px;
+  gap: 14px;
+  height: 164px;
 }
 body .clima .date_clima .place .content .sites figure {
   margin: 0;
@@ -425,28 +424,24 @@ body .clima .date_clima .place .content .sites figure .plus {
   width: 18px;
   height: 18px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #7966E9;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body .clima .date_clima .place .content .sites figure .plus::after {
   content: "+";
   color: #FFF;
   font-size: 13px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   line-height: 1;
   font-weight: bold;
 }
-body .clima .date_clima .place .content .sites figure .plus.active {
-  background-color: #7966E9;
-}
 body .clima .date_clima .place .content .sites figure:nth-child(1) {
-  height: 165px;
+  grid-row: 1/span 2;
+  grid-column: 1;
   width: 145px;
-  margin-right: 14px;
-  flex-shrink: 0;
+  height: 164px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .place .content .sites figure:nth-child(1) {
@@ -455,69 +450,76 @@ body .clima .date_clima .place .content .sites figure:nth-child(1) {
   }
 }
 body .clima .date_clima .place .content .sites figure:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+  width: 140px;
   height: 75px;
-  width: 135px;
-  margin-bottom: 12px;
-  border-radius: 14px;
 }
 body .clima .date_clima .place .content .sites figure:nth-child(3) {
+  grid-row: 2;
+  grid-column: 2;
+  width: 140px;
   height: 75px;
-  width: 135px;
-  border-radius: 14px;
 }
 body .clima .date_clima {
-  /* Ciudades y botón Agregar ubicación */
+  /* Ciudades y botón Agregar ubicación (Alineación superior simétrica) */
 }
 body .clima .date_clima .paris {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  padding-left: 15px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .paris {
-    position: relative;
     margin-top: 20px;
+    padding-left: 0;
   }
 }
 body .clima .date_clima .paris .dateparis {
-  width: 215px;
+  width: 100%;
+  max-width: 220px;
   background-color: #FFF;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-  margin-bottom: 14px;
-  padding: 10px 12px 6px;
+  margin-bottom: 12px;
+  padding: 8px 12px 6px;
+  margin-left: auto;
+}
+body .clima .date_clima .paris .dateparis:first-child {
+  margin-top: 30px;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .paris .dateparis {
-    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  body .clima .date_clima .paris .dateparis:first-child {
+    margin-top: 0;
   }
 }
 body .clima .date_clima .paris .dateparis .dateparis_header {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 body .clima .date_clima .paris .dateparis .dateparis_header figure {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background-color: #DAE9F6;
   border-radius: 14px;
-  margin: 0 10px 0 0;
+  margin: 0 8px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 body .clima .date_clima .paris .dateparis .dateparis_header figure img {
-  max-width: 32px;
-  max-height: 32px;
+  max-width: 28px;
+  max-height: 28px;
   object-fit: contain;
 }
 body .clima .date_clima .paris .dateparis .dateparis_header p.temp {
-  margin: 0 8px 0 0;
-  font-size: 20px;
-  font-size: calc(20 / 16 * 1rem);
+  margin: 0 6px 0 0;
+  font-size: 19px;
+  font-size: calc(19 / 16 * 1rem);
   font-weight: 700;
   letter-spacing: -1px;
   color: #2B3541;
@@ -575,19 +577,22 @@ body .clima .date_clima .paris {
   /* Botón Agregar ubicación centrado horizontal y verticalmente */
 }
 body .clima .date_clima .paris .addlocations {
-  width: 215px;
-  height: 85px;
+  width: 100%;
+  max-width: 220px;
+  height: 72px;
   border: 2px dashed #E0E6ED;
   background-color: #FFF;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
   margin-bottom: 0;
 }
 @media (min-width: 1px) and (max-width: 768px) {
   body .clima .date_clima .paris .addlocations {
-    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
   }
 }
 body .clima .date_clima .paris .addlocations button {
@@ -597,7 +602,7 @@ body .clima .date_clima .paris .addlocations button {
   border: none;
   color: #7966E9;
   border-radius: 20px;
-  padding: 9px 22px;
+  padding: 8px 20px;
   background-color: #DDE8F4;
   cursor: pointer;
   transition: all 0.25s ease;
