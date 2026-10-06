@@ -1,84 +1,101 @@
-// Archivo gulpfile.js
+const gulp = require('gulp');
+const dartSass = require('sass');
+const gulpSass = require('gulp-sass');
+const sass = gulpSass(dartSass);
+const pug = require('gulp-pug');
+const terser = require('gulp-terser');
+const plumber = require('gulp-plumber');
+const browserSync = require('browser-sync').create();
 
-var gulp = require('gulp'),
-uglify = require('gulp-uglify'),
-sass = require('gulp-sass'),
-pug = require('gulp-pug2'),
-plumber = require('gulp-plumber'),
-imagemin = require('gulp-imagemin'),
-pngquant = require('imagemin-pngquant'),
-mozjpeg = require('imagemin-mozjpeg'),
-webserver = require('gulp-webserver'),
-fontgen = require('gulp-fontgen');
-//requireDir = require('require-dir');
+// Compilar SCSS a CSS
+function scssTask() {
+  return gulp.src('./src/assets/scss/style_tools.scss')
+    .pipe(plumber())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./build/assets/css'))
+    .pipe(browserSync.stream());
+}
 
-//var dir = requireDir('./gulp-tasks', {recurse: true});
+// Minificar y procesar JavaScript
+function jsTask() {
+  return gulp.src('./src/assets/js/**/*.js')
+    .pipe(plumber())
+    .pipe(terser())
+    .pipe(gulp.dest('./build/assets/js'))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('uglify', function() {//Comprime los .js y los pone en build
-  return gulp.src('./src/assets/js/*.js')
-  .pipe(plumber())
-  .pipe(uglify())
-  .pipe(gulp.dest('./build/assets/js'));
-  console.log("Archivos compilados con éxito!");
-});
+// Copiar archivos de datos JSON (data.json)
+function jsonTask() {
+  return gulp.src('./src/assets/js/**/*.json')
+    .pipe(plumber())
+    .pipe(gulp.dest('./build/assets/js'))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('webserver', function() {//Servidor web defecto puerto :8000
-  return gulp.src('build')
-  .pipe(webserver({
-    livereload: true,
-    directoryListing: {
-      enable: true,
-      path: 'build'
-    },
-    open: true
-  }));
-});
-
-gulp.task('scss', function() {//Compila los archivos sass a css
-  return gulp.src(['./src/assets/scss/*.scss', './src/assets/scss/**/*.scss'])
-  .pipe(plumber())
-  .pipe(sass({/*outputStyle: 'compressed'*/}))//Verificar si se manipula css
-  .pipe(gulp.dest('./build/assets/css'));
-  console.log("SCSS compilado!");
-});
-
-gulp.task('pug', function() {// Comilas los archivos pug a HTML
+// Compilar plantillas Pug a HTML
+function pugTask() {
   return gulp.src(['./src/pug/*.pug', './src/pug/**/*.pug'])
-  .pipe(plumber())
-  .pipe(pug({
-    // opciones.
-  }))
-  .pipe(gulp.dest('./build/html'));
-  console.log("Archivos HTML Compilados con éxito!");
-});
+    .pipe(plumber())
+    .pipe(pug({
+      pretty: true
+    }))
+    .pipe(gulp.dest('./build/html'))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('imagemin', function() {//Optimiza las imágenes
-  return gulp.src('./src/assets/images/*.{jpg,jpeg,png,gif}')
-  .pipe(plumber())
-  .pipe(imagemin([
-    pngquant({quality: [0.5, 0.5]}),
-    mozjpeg({quality: 50})
-  ]
-  ))
-  .pipe(gulp.dest('./build/assets/images'));
-  console.log("Imágenes comprimidas con éxito!");
-});
+// Copiar y sincronizar imágenes binarias
+function imagesTask() {
+  return gulp.src('./src/assets/images/**/*.{jpg,jpeg,png,gif,svg}', { encoding: false })
+    .pipe(plumber())
+    .pipe(gulp.dest('./build/assets/images'))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('fontgen', function(){//Convierte las fuentes a otros formatos
-  return gulp.src("./src/assets/scss/fonts/*.{ttf,otf}")
-  .pipe(plumber())
-  .pipe(fontgen({
-    dest: "./build/assets/fonts"
-  }));
-  console.log("Fuentes generadas con éxito!");
-});
+// Servidor local con BrowserSync y recarga en vivo
+function serverTask(done) {
+  browserSync.init({
+    server: {
+      baseDir: './build'
+    },
+    startPath: '/html/index.html',
+    port: 8000,
+    open: true,
+    notify: false
+  });
+  done();
+}
 
-gulp.task('watch', function() {
-  gulp.watch('./src/assets/js/*.js', gulp.series('uglify'));
-  gulp.watch(['./src/assets/scss/*.scss', './src/assets/scss/**/*.scss'], gulp.series('scss'));
-  gulp.watch(['./src/pug/*.pug', './src/pug/**/*.pug'], gulp.series('pug'));
-  gulp.watch('./src/assets/images/*.{jpg,jpeg,png,gif}', gulp.series('imagemin'));
-  gulp.watch('./src/assets/scss/fonts/*.{ttf,otf}', gulp.series('fontgen'));
-});
+// Observador de cambios en archivos
+function watchTask() {
+  gulp.watch(['./src/assets/scss/*.scss', './src/assets/scss/**/*.scss'], scssTask);
+  gulp.watch('./src/assets/js/**/*.js', jsTask);
+  gulp.watch('./src/assets/js/**/*.json', jsonTask);
+  gulp.watch(['./src/pug/*.pug', './src/pug/**/*.pug'], pugTask);
+  gulp.watch('./src/assets/images/**/*.{jpg,jpeg,png,gif,svg}', imagesTask);
+  gulp.watch('./build/**/*.html').on('change', browserSync.reload);
+}
 
-gulp.task('default',gulp.parallel('watch','uglify', 'scss', 'pug', 'imagemin', 'webserver', 'fontgen'));
+// Tareas compuestas
+const build = gulp.parallel(
+  scssTask,
+  jsTask,
+  jsonTask,
+  pugTask,
+  imagesTask
+);
+
+const dev = gulp.series(
+  build,
+  gulp.parallel(watchTask, serverTask)
+);
+
+// Exportar tareas
+exports.scss = scssTask;
+exports.js = jsTask;
+exports.json = jsonTask;
+exports.pug = pugTask;
+exports.images = imagesTask;
+exports.build = build;
+exports.server = serverTask;
+exports.default = dev;
