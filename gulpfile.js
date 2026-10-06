@@ -7,11 +7,13 @@ const terser = require('gulp-terser');
 const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
 
-// Compilar SCSS a CSS
+// Compilar SCSS a CSS (sin advertencias de deprecación de Sass)
 function scssTask() {
   return gulp.src('./src/assets/scss/style_tools.scss')
     .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      silenceDeprecations: ['legacy-js-api', 'import']
+    }).on('error', sass.logError))
     .pipe(gulp.dest('./build/assets/css'))
     .pipe(browserSync.stream());
 }
@@ -68,10 +70,10 @@ function serverTask(done) {
 
 // Observador de cambios en archivos
 function watchTask() {
-  gulp.watch(['./src/assets/scss/*.scss', './src/assets/scss/**/*.scss'], scssTask);
+  gulp.watch('./src/assets/scss/**/*.scss', scssTask);
   gulp.watch('./src/assets/js/**/*.js', jsTask);
   gulp.watch('./src/assets/js/**/*.json', jsonTask);
-  gulp.watch(['./src/pug/*.pug', './src/pug/**/*.pug'], pugTask);
+  gulp.watch('./src/pug/**/*.pug', pugTask);
   gulp.watch('./src/assets/images/**/*.{jpg,jpeg,png,gif,svg}', imagesTask);
   gulp.watch('./build/**/*.html').on('change', browserSync.reload);
 }
@@ -93,7 +95,7 @@ const dev = gulp.series(
 // Exportar tareas
 exports.scss = scssTask;
 exports.js = jsTask;
-exports.json = jsonTask;
+exports.json = jsTask;
 exports.pug = pugTask;
 exports.images = imagesTask;
 exports.build = build;
